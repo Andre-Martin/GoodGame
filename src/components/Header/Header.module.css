@@ -1,0 +1,19 @@
+.header {
+  background-color: var(--bc-color-first);
+  padding: 1em;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  color: #49048f;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.login {
+  color: white;
+}
