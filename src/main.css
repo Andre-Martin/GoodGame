@@ -1,8 +1,4 @@
 :root {
-  /* header and footer bg colors */
-  --bc-color-first: #4350b5;
-  /* main bg color */
-  --bc-color-second: #cacdff;
 }
 
 * {
@@ -16,14 +12,7 @@
 }
 
 body {
-  background-color: var(--bc-color-second);
   font-family: roboto;
-}
-
-.container {
-  max-width: 960px;
-  width: 100%;
-  margin: 0 auto;
 }
 
 main {
