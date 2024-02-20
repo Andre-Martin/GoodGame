@@ -10,9 +10,9 @@ Our project aims to develop an application tailored for tabletop gaming enthusia
 
 ### DOCS
 
-- Here's the [timeline](./docs/Timeline.pdf) of the project
-- Here's the [report](./docs/Project_Report.pdf) of the project
-- Here's the [WBS](./docs/WBS_part1.pdf) of the project
+- Here's the [Timeline](./docs/Timeline.pdf) of the project
+- Here's the [Report](./docs/Project_Report.pdf) of the project
+- Here's the [WBS](./docs/WBS_chart1.pdf) of the project
 
 ### Getting Started
 
@@ -23,7 +23,7 @@ Our project aims to develop an application tailored for tabletop gaming enthusia
 
 ---
 
-### Teach Stack
+### Tech Stack
 
 **Client**:
 
@@ -46,10 +46,10 @@ Our project aims to develop an application tailored for tabletop gaming enthusia
 <table>
   <tbody>
     <tr>
-    <td align="center" valign="top" width="25%"><a href="https://github.com/"><img src="https://avatars.githubusercontent.com/u/156551883" width="100px;" alt="Tyler Benning"/><br /><sub><b>Jacques Van Niekerk</b></sub></a></td>
-    <td align="center" valign="top" width="25%"><a href="https://github.com/"><img src="https://avatars.githubusercontent.com/u/156551537" width="100px;" alt="Tyler Benning"/><br /><sub><b>Andre Martin</b></sub></a></td>
-    <td align="center" valign="top" width="25%"><a href="https://github.com/"><img src="https://avatars.githubusercontent.com/u/77096179" width="100px;" alt="Tyler Benning"/><br /><sub><b>Jina Park</b></sub></a></td>
-    <td align="center" valign="top" width="25%"><a href="https://github.com/"><img src="https://avatars.githubusercontent.com/u/105437358" width="100px;" alt="Tyler Benning"/><br /><sub><b>Erbol Kulantaev</b></sub></a></td>
+    <td align="center" valign="top" width="25%"><a href="https://github.com/vnjacques00"><img src="https://avatars.githubusercontent.com/u/156551883" width="100px;" alt="Tyler Benning"/><br /><sub><b>Jacques Van Niekerk</b></sub></a></td>
+    <td align="center" valign="top" width="25%"><a href="https://github.com/Jina-sw"><img src="https://avatars.githubusercontent.com/u/77096179" width="100px;" alt="Tyler Benning"/><br /><sub><b>Jina Park</b></sub></a></td>
+    <td align="center" valign="top" width="25%"><a href="https://github.com/Andre-Martin"><img src="https://avatars.githubusercontent.com/u/156551537" width="100px;" alt="Tyler Benning"/><br /><sub><b>Andre Martin</b></sub></a></td>
+    <td align="center" valign="top" width="25%"><a href="https://github.com/balabaII"><img src="https://avatars.githubusercontent.com/u/105437358" width="100px;" alt="Tyler Benning"/><br /><sub><b>Erbol Kulantaev</b></sub></a></td>
     </tr>
  </tbody>
 </table>

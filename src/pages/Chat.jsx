@@ -1,8 +1,6 @@
 import { useState } from "react";
 
 import { MessageBox } from "react-chat-elements";
-
-import styles from "./Chat.module.css";
 import "react-chat-elements/dist/main.css";
 
 function Chat() {
