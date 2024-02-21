@@ -1,4 +1,4 @@
-# GoodGame Project 2350
+# GoodGame Project CPSC 2350
 
 ---
 
@@ -10,13 +10,14 @@ Our project aims to develop an application tailored for tabletop gaming enthusia
 
 ### DOCS
 
-- Here is the [Report](./docs/GoodGame_Project_Report.pdf) of the project
-- Here is the [Timeline](./docs/GoodGame_Project_Timeline.pdf) of the project
-- Here is the [WBS](./docs/GoodGame_Project_WBS.pdf) of the project
+- Here is the [Report](./Documents/GoodGame_Project_Report.pdf) of the project
+- Here is the [Timeline](./Documents/GoodGame_Project_Timeline.pdf) of the project
+- Here is the [WBS](./Documents/GoodGame_Project_WBS.pdf) of the project
 
 ### Milestone #1 AI Declarations
-[Andre's AI Disclosure Form](P1_AI_Declaration_Andre_Martin_100339813.pdf)
-[Erbol's AI Disclosure Form](P1_AI_Declaration_Erbol_Kulantaev_100403146.pdf)
+- [Andre's AI Disclosure Form](P1_AI_Declaration_Andre_Martin_100339813.pdf)
+- [Erbol's AI Disclosure Form](P1_AI_Declaration_Erbol_Kulantaev_100403146.pdf)
+- [Jacques' AI Disclosure Form](P1_AI_Declaration_Jacques_vanNiekerk_100402000.pdf)
 
 
 ### Getting Started
