@@ -10,12 +10,13 @@ Our project aims to develop an application tailored for tabletop gaming enthusia
 
 ### DOCS
 
-- Here's the [Timeline](./docs/Timeline.pdf) of the project
-- Here's the [Report](./docs/Project_Report.pdf) of the project
-- Here's the [WBS](./docs/WBS_chart1.pdf) of the project
+- Here is the [Report](./docs/GoodGame_Project_Report.pdf) of the project
+- Here is the [Timeline](./docs/GoodGame_Project_Timeline.pdf) of the project
+- Here is the [WBS](./docs/GoodGame_Project_WBS.pdf) of the project
 
-### AI Declarations
+### Milestone #1 AI Declarations
 [Andre's AI Disclosure Form](P1_AI_Declaration_Andre_Martin_100339813.pdf)
+[Erbol's AI Disclosure Form](P1_AI_Declaration_Erbol_Kulantaev_100403146.pdf)
 
 
 ### Getting Started
