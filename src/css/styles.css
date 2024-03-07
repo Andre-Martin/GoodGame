@@ -1,0 +1,162 @@
+/* home */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+.main-img {
+  position: relative;
+  background: url("../img/img.png");
+  background-size: cover;
+  background-position: center center;
+
+  margin: 10px 0;
+  width: 100%;
+  height: 300px;
+}
+
+.main-img p {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  font-size: 5rem;
+  color: white;
+}
+
+/* games-list */
+.table-img_block {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-height: 150px;
+  height: 100%;
+}
+
+.description-header {
+  display: flex;
+  align-items: bottom;
+}
+
+.description-header__title a {
+  color: blue;
+  font-size: 1.5em;
+  margin-right: 0.3rem;
+}
+.description-header__year {
+  color: gray;
+  font-size: 1.3em;
+}
+
+/* game-info */
+.game-img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: 200px;
+}
+
+.info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.game-thesis {
+  font-weight: 400;
+}
+
+.game-panel_block {
+  display: flex;
+  justify-content: start;
+  border-top: 1px solid black;
+}
+
+.game-panel_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.6em 1.5em;
+  text-align: center;
+  border-left: 1px solid black;
+}
+
+.game-panel_item:first-of-type {
+  border-left: none;
+}
+
+.sup-info {
+  font-weight: 400;
+  border-bottom: 1px dashed gray;
+}
+
+/* chat */
+.main-chat section {
+  max-height: 90vh;
+}
+
+.main-chat section .card {
+  margin-bottom: 10px;
+}
+
+.chat-section {
+  position: relative;
+  max-width: 80%;
+  height: 100%;
+  margin: 0 auto;
+}
+.chat-section .input-group {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 10px;
+}
+
+.ai-textbox,
+.user-textbox {
+  position: relative;
+  margin-top: 10px;
+}
+
+.textbox-icon {
+  position: absolute;
+  left: -40px;
+  background-position: center center;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.ai-textbox .textbox-icon {
+  background-image: url("../img/chatgpt.png");
+}
+
+.user-textbox .textbox-icon {
+  background-image: url("../img/usericon.png");
+}
+
+@media only screen and (max-width: 992px) {
+  /* games-info */
+  .info-header {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* games-list */
+  .table-hover tr td:first-of-type {
+    display: none;
+  }
+  tr {
+    border-bottom: 3px solid black !important;
+  }
+  td {
+    border: none !important;
+  }
+}
