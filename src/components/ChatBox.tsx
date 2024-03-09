@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BOARDGAME_ITEM } from "../utils/ROUTES";
+import ROUTES from "../utils/ROUTES";
 import { ChatBoxProps } from "../utils/types";
 
 const ChatBox = ({ isAI, messages, link }: ChatBoxProps) => {
@@ -15,7 +15,7 @@ const ChatBox = ({ isAI, messages, link }: ChatBoxProps) => {
       <p>
         {link?.map((item, index) => {
           return (
-            <Link key={index} to={`${BOARDGAME_ITEM}${item.id}`}>
+            <Link key={index} to={`${ROUTES.boardGameItem}${item.id}`}>
               {item.content}
             </Link>
           );

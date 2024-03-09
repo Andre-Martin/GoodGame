@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BOARDGAME_ITEM } from "../utils/ROUTES";
+import ROUTES from "../utils/ROUTES";
 import { ChatCardProps } from "../utils/types";
 
 const ChatCard = ({ title, img, description, id, year }: ChatCardProps) => {
@@ -11,7 +11,10 @@ const ChatCard = ({ title, img, description, id, year }: ChatCardProps) => {
           {title} ({year})
         </h5>
         <p className="card-text">{description}</p>
-        <Link to={`${BOARDGAME_ITEM}${id}`} className="btn btn-outline-primary">
+        <Link
+          to={`${ROUTES.boardGameItem}${id}`}
+          className="btn btn-outline-primary"
+        >
           More Info
         </Link>
       </div>

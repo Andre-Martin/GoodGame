@@ -1,18 +1,32 @@
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
+
 import GameListItem from "../components/GameListItem";
 
-import { gameListMockInfo } from "../utils/mockInfo";
+import { fetchBoardgames } from "../features/boardgamelist/slice";
+import { BggData, BggResponse } from "../utils/types";
 
 const GameList = () => {
+  const { boardgamesLoadingStatus, boardgamesList } = useAppSelector(
+    (state) => state.boardgamesReducer
+  );
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(fetchBoardgames({ start: 132, amount: 123 }));
+  }, []);
+
   return (
     <main className="shadow-lg p-4 mt-3 rounded">
-      <table className="table table-hover container">
-        <tbody>
-          <GameListItem {...gameListMockInfo} />
-          <GameListItem {...gameListMockInfo} number={2} year={2012} />
-          <GameListItem {...gameListMockInfo} number={3} year={2013} />
-          <GameListItem {...gameListMockInfo} number={4} year={2019} />
-        </tbody>
-      </table>
+      {boardgamesLoadingStatus === "pending" && <div>Loading...</div>}
+      {boardgamesLoadingStatus === "succeeded" && (
+        <table className="table table-hover container">
+          <tbody>
+            {boardgamesList.map((item: BggData, index: number) => (
+              <GameListItem key={item.id} {...item} number={index + 1} />
+            ))}
+          </tbody>
+        </table>
+      )}
     </main>
   );
 };

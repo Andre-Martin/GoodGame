@@ -17,10 +17,34 @@ export type ChatCardProps = {
   year: number;
 };
 
-export type GameListItemsProps = {
-  number: number;
-  description: string;
-  title: string;
-  year: number;
+type Name = {
+  value: string;
+  type: "primary" | "alternative";
+  sortindex: number;
+};
+export type BggResponse = {
   id: number;
+  names: Name[];
+  yearpublished: number;
+  description: string;
+  thumbnail: string;
+  img: string;
+  minplayers: number;
+  maxplayers: number;
+  minplaytime: number;
+  maxplaytime: number;
+};
+
+export type BggData = {
+  number: number;
+  id: number;
+  name: string;
+  year: number;
+  description: string;
+  thumbnail: string;
+  img: string;
+  minplayers: number;
+  maxplayers: number;
+  minplaytime: number;
+  maxplaytime: number;
 };

@@ -17,15 +17,6 @@ const theme = createTheme({
     warning: {
       main: "#FFCE67",
     },
-    danger: {
-      main: "#FF7851",
-    },
-    light: {
-      main: "#F8F9FA",
-    },
-    dark: {
-      main: "#343A40",
-    },
   },
 });
 

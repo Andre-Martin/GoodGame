@@ -42,12 +42,3 @@ export const chatBoxMockInfo3 = {
   ],
   key: 3,
 };
-
-export const gameListMockInfo = {
-  title: "Clue",
-  year: 2019,
-  number: 1,
-  id: 1,
-  description:
-    " Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe quisquam debitis cumque et nobis est officiis iure distinctio facilis aspernatur dolor amet doloribus sunt architecto, aut quis consequuntur tenetur similique!",
-};
