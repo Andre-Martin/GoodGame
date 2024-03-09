@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/sketchy.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="./index.html">Good Game</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarColor01"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="./index.html">Home </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./games-list.html"
+                    >BoardGame List</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="./chat.html">CHAT GG</a>
+                </li>
+              </ul>
+              <form class="d-flex">
+                <input
+                  class="form-control me-sm-2"
+                  type="search"
+                  placeholder="Search"
+                />
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+                  Search
+                </button>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main class="row m-0 mt-1 p-1 shadow-lg main-chat">
+        <section class="col-lg-3 d-sm-none d-md-block col-sm-0 overflow-auto">
+          <div class="card border-light">
+            <img src="./img/gameImg1.png" alt="" class="card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title">Clue (2019)</h5>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+                similique aut natus sed facere quibusdam quis laudantium
+                asperiores adipisci, molestias sapiente, cum explicabo dolor
+                iure itaque minus. Nihil, a cum.
+              </p>
+              <a href="./game-info.html" class="btn btn-outline-primary"
+                >More Info</a
+              >
+            </div>
+          </div>
+          <div class="card border-light">
+            <img src="./img/gameImg2.png" alt="" class="card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title">Clue (2019)</h5>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+                similique aut natus sed facere quibusdam quis laudantium
+                asperiores adipisci, molestias sapiente, cum explicabo dolor
+                iure itaque minus. Nihil, a cum.
+              </p>
+              <a href="./game-info.html" class="btn btn-outline-primary"
+                >More Info</a
+              >
+            </div>
+          </div>
+          <div class="card border-light">
+            <img src="./img/gameImg3.png" alt="" class="card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title">Clue (2019)</h5>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+                similique aut natus sed facere quibusdam quis laudantium
+                asperiores adipisci, molestias sapiente, cum explicabo dolor
+                iure itaque minus. Nihil, a cum.
+              </p>
+              <a href="./game-info.html" class="btn btn-outline-primary"
+                >More Info</a
+              >
+            </div>
+          </div>
+          <div class="card border-light">
+            <img src="./img/gameImg4.png" alt="" class="card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title">Clue (2019)</h5>
+              <p class="card-text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+                similique aut natus sed facere quibusdam quis laudantium
+                asperiores adipisci, molestias sapiente, cum explicabo dolor
+                iure itaque minus. Nihil, a cum.
+              </p>
+              <a href="./game-info.html" class="btn btn-outline-primary"
+                >More Info</a
+              >
+            </div>
+          </div>
+        </section>
+        <section class="col-lg-9 col-sm-12 shadow-lg p-0 overflow-auto">
+          <div class="chat-section">
+            <div class="ai-textbox">
+              <div class="textbox-icon"></div>
+              <h4 class="textbox-title fs-5">GoodGameBot</h4>
+              <p class="textbox-content">Hello, I am your AI assistant - GG.</p>
+              <div class="textbox-content">How can I help you?</div>
+            </div>
+            <div class="user-textbox">
+              <div class="textbox-icon"></div>
+              <h4 class="textbox-title fs-5">You</h4>
+              <p class="textbox-content">
+                Can you recommend educational board games for my 9 years old
+                son? Match can be an interesting subject for my son
+              </p>
+            </div>
+            <div class="ai-textbox">
+              <div class="textbox-icon"></div>
+              <h4 class="textbox-title fs-5">GoodGameBot</h4>
+              <p class="textbox-content">Absolutely! Here is what I found...</p>
+              <p class="textbox-content">
+                <a href="./game-info.html" class="text-info">1.Clue</a>
+                <a href="./game-info.html" class="text-info">2.Rummikub</a>
+                <a href="./game-info.html" class="text-info">3.Matheble</a>
+                <a href="./game-info.html" class="text-info">4.PunPun</a>
+              </p>
+              <p class="textbox-content">
+                Please click on the name you would like further information
+              </p>
+            </div>
+            <div class="input-group mx-auto">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Message GoodGameBot... "
+              />
+              <button class="btn btn-outline-primary" type="button">
+                <i class="bi bi-arrow-up-square-fill fs-4"></i>
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

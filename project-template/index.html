@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/sketchy.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="./index.html">Good Game</a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarColor01"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                  <a class="nav-link active" href="./index.html">Home </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./games-list.html"
+                    >BoardGame List</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./chat.html">CHAT GG</a>
+                </li>
+              </ul>
+              <form class="d-flex">
+                <input
+                  class="form-control me-sm-2"
+                  type="search"
+                  placeholder="Search"
+                />
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+                  Search
+                </button>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main>
+        <div class="main-img">
+          <p>Good Game</p>
+        </div>
+
+        <div class="col-sm-12 col-md-8 col-lg-5 mx-auto shadow-lg p-4 rounded">
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Quick Search"
+              aria-describedby="button-addon2"
+            />
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              id="button-addon2"
+            >
+              Enter
+            </button>
+          </div>
+          <button class="btn btn-outline-secondary w-100">
+            Advanced Search
+          </button>
+
+          <button class="btn btn-outline-secondary w-100">
+            <a class="text-decoration-none" href="./chat.html">ASK GG </a>
+          </button>
+        </div>
+      </main>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
