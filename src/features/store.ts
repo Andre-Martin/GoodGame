@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import boardgamesReducer from "./boardgamelist/slice";
-import boardgameReducer from "./boardgame/slice";
-import { buildGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
+
+import boardgamesReducer from "./boardgamelist/boardgameListSlice";
+import boardgameReducer from "./boardgame/boardgameSlice";
+import chatReducer from "./chat/chatSlice";
 
 export const store = configureStore({
-  reducer: { boardgamesReducer, boardgameReducer },
+  reducer: { boardgamesReducer, boardgameReducer, chatReducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),
 });

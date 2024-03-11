@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
-import { fetchBoardgame } from "../features/boardgame/slice";
+import { fetchBoardgame } from "../features/boardgame/boardgameSlice";
 import { useParams } from "react-router-dom";
 
 const SingleGame = () => {

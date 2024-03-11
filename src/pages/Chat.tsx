@@ -1,38 +1,62 @@
-import { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
+
+import { sendMessage as sendMessageAction } from "../features/chat/chatSlice";
+
 import ChatCard from "../components/ChatCard";
 import ChatBox from "../components/ChatBox";
 
-import {
-  cardMockInfo,
-  chatBoxMockInfo1,
-  chatBoxMockInfo2,
-  chatBoxMockInfo3,
-} from "../utils/mockInfo";
+interface KeyboardEvent {
+  key: string;
+}
 
-function Chat() {
-  const [messages, setMessages] = useState([]);
-  const [inputValue, setInputValue] = useState();
+const Chat = () => {
+  const [inputValue, setInputValue] = useState("");
+  const dispatch = useAppDispatch();
+  const { messages, cards } = useAppSelector((state) => state.chatReducer);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === "Enter") sendMessage();
+  };
+
+  const sendMessage = () => {
+    dispatch(
+      sendMessageAction({ sender: false, message: [{ content: inputValue }] })
+    );
+    setInputValue("");
+  };
 
   return (
     <main className="row m-0 mt-1 p-1 shadow-lg main-chat">
       <section className="col-lg-3 d-sm-none d-md-block col-sm-0 overflow-auto">
-        <ChatCard {...cardMockInfo} key={1} />
-        <ChatCard {...cardMockInfo} id={2} key={2} />
-        <ChatCard {...cardMockInfo} id={3} key={3} />
-        <ChatCard {...cardMockInfo} id={4} key={4} />
+        {cards.map((item) => (
+          <ChatCard {...item} key={item.id} />
+        ))}
       </section>
       <section className="col-lg-9 col-sm-12 shadow-lg p-0 overflow-auto">
-        <div className="chat-section">
-          <ChatBox {...chatBoxMockInfo1} />
-          <ChatBox {...chatBoxMockInfo2} />
-          <ChatBox {...chatBoxMockInfo3} />
+        <div className="chat-section ">
+          {messages.map((item, index) => (
+            <ChatBox {...item} key={index} />
+          ))}
+
           <div className="input-group mx-auto">
             <input
               type="text"
               className="form-control"
               placeholder="Message GoodGameBot... "
+              value={inputValue}
+              onChange={handleChange}
+              onKeyDown={handleKeyDown}
             />
-            <button className="btn btn-outline-primary" type="button">
+            <button
+              className="btn btn-outline-primary"
+              type="button"
+              onClick={sendMessage}
+            >
               <i className="bi bi-arrow-up-square-fill fs-4"></i>
             </button>
           </div>
@@ -40,6 +64,6 @@ function Chat() {
       </section>
     </main>
   );
-}
+};
 
 export default Chat;

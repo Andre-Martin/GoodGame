@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 
 import App from "./App";
 import { store } from "./features/store";
-import "./css/sketchy.css";
+
 import "./css/styles.css";
 
 import "@fontsource/roboto/300.css";

@@ -3,8 +3,8 @@ import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
 
 import GameListItem from "../components/GameListItem";
 
-import { fetchBoardgames } from "../features/boardgamelist/slice";
-import { BggData, BggResponse } from "../utils/types";
+import { fetchBoardgames } from "../features/boardgamelist/boardgameListSlice";
+import { BggData } from "../utils/types";
 
 const GameList = () => {
   const { boardgamesLoadingStatus, boardgamesList } = useAppSelector(
@@ -12,7 +12,7 @@ const GameList = () => {
   );
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(fetchBoardgames({ start: 132, amount: 123 }));
+    dispatch(fetchBoardgames({ start: 1031, amount: 50 }));
   }, []);
 
   return (
