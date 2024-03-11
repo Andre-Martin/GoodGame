@@ -1,44 +1,70 @@
-export const cardMockInfo = {
-  title: "Clue",
-  year: 2019,
-  description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores similique aut natus sed facere quibusdam quis laudantiumasperiores adipisci, molestias sapiente, cum explicabo dolor iureitaque minus. Nihil, a cum.`,
-  img: "src/img/gameImg",
-  id: 1,
-};
+import type { chatState } from "./types";
 
-export const chatBoxMockInfo1 = {
-  isAI: true,
-  messages: ["Hello, I am your AI assistant - GG.", "How can I help you?"],
-  key: 1,
-};
-
-export const chatBoxMockInfo2 = {
-  isAI: false,
+export const chatMockInfo: chatState = {
   messages: [
-    "Can you recommend educational board games for my 9 years old son? Match can be an interesting subject for my son",
-  ],
-  key: 2,
-};
-export const chatBoxMockInfo3 = {
-  isAI: true,
-  messages: ["Absolutely! Here is what I found..."],
-  links: [
     {
-      content: "1.Clue",
+      sender: true,
+      message: [
+        { content: "Hello, I am your AI Assistant - GG." },
+        { content: "How can I help you?" },
+      ],
+    },
+    {
+      sender: false,
+      message: [
+        {
+          content:
+            "Can you recommend educational board games for my 9 years old son? Match can be an interesting subject for my son",
+        },
+      ],
+    },
+    {
+      sender: true,
+      message: [
+        {
+          content: "Absolutely! Here is what I found...",
+          recommendations: [
+            {
+              content: "1.Clue",
+              id: 1,
+            },
+            {
+              content: "2.Rummikub",
+              id: 2,
+            },
+            {
+              content: "3.Matheble",
+              id: 3,
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  cards: [
+    {
+      name: "Clue",
+      year: 2019,
+      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores similique aut natus sed facere quibusdam quis laudantiumasperiores adipisci, molestias sapiente, cum explicabo dolor iureitaque minus. Nihil, a cum.`,
+      thumbnail:
+        "https://cf.geekdo-images.com/rpwCZAjYLD940NWwP3SRoA__thumb/img/YT6svCVsWqLrDitcMEtyazVktbQ=/fit-in/200x150/filters:strip_icc()/pic4718279.jpg",
       id: 1,
     },
     {
-      content: "2.Rummikub",
+      name: "Clue",
+      year: 2013,
+      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores similique aut natus sed facere quibusdam quis laudantiumasperiores adipisci, molestias sapiente, cum explicabo dolor iureitaque minus. Nihil, a cum.`,
+      thumbnail:
+        "https://cf.geekdo-images.com/oQYhaJx5Lg3KcGis2reuWQ__thumb/img/3bIZnNfVM1viwH9A9d2Rrip1Y80=/fit-in/200x150/filters:strip_icc()/pic4001505.jpg",
       id: 2,
     },
     {
-      content: "3.Matheble",
+      name: "Clue",
+      year: 2012,
+      description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores similique aut natus sed facere quibusdam quis laudantiumasperiores adipisci, molestias sapiente, cum explicabo dolor iureitaque minus. Nihil, a cum.`,
+      thumbnail:
+        "https://cf.geekdo-images.com/o9-sNXmFS_TLAb7ZlZ4dRA__thumb/img/22MSUC0-ZWgwzhi_VKIbENJik1w=/fit-in/200x150/filters:strip_icc()/pic3211873.jpg",
       id: 3,
     },
-    {
-      content: "4.PunPun",
-      id: 4,
-    },
   ],
-  key: 3,
 };

@@ -1,26 +1,31 @@
 import { Link } from "react-router-dom";
 import ROUTES from "../utils/ROUTES";
-import { ChatBoxProps } from "../utils/types";
+import type { chatItem } from "../utils/types";
 
-const ChatBox = ({ isAI, messages, link }: ChatBoxProps) => {
+const ChatBox = ({ sender, message }: chatItem) => {
   return (
-    <div className={isAI ? "ai-textbox" : "user-textbox"}>
+    <div className={sender ? "ai-textbox" : "user-textbox"}>
       <div className="textbox-icon"></div>
-      <h4 className="textbox-title fs-5">{isAI ? "GoodGameBot" : "You"}</h4>
-      {messages.map((message, index) => (
-        <p key={index} className="textbox-content">
-          {message}
-        </p>
+      <h4 className="textbox-title fs-5">{sender ? "GoodGameBot" : "You"}</h4>
+      {message.map((message, index) => (
+        <>
+          <p key={index} className="textbox-content">
+            {message.content}
+          </p>
+          {message?.recommendations &&
+            message.recommendations.map((recommendation) => (
+              <>
+                <Link
+                  key={index}
+                  to={`${ROUTES.boardGameItem}${recommendation.id}`}
+                >
+                  {recommendation.content}
+                </Link>
+                <br />
+              </>
+            ))}
+        </>
       ))}
-      <p>
-        {link?.map((item, index) => {
-          return (
-            <Link key={index} to={`${ROUTES.boardGameItem}${item.id}`}>
-              {item.content}
-            </Link>
-          );
-        })}
-      </p>
     </div>
   );
 };

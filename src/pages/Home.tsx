@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { CHAT } from "../utils/ROUTES";
+import ROUTES from "../utils/ROUTES";
 
 function Home() {
   return (
@@ -31,7 +31,7 @@ function Home() {
           </button>
 
           <button className="btn btn-outline-secondary w-100">
-            <Link className="text-decoration-none" to={CHAT}>
+            <Link className="text-decoration-none" to={ROUTES.chat}>
               ASK GG
             </Link>
           </button>

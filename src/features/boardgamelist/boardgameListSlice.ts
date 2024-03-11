@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import type { BggResponse } from "../../utils/types";
-import { getBoardgames } from "../../utils/boardgameAPI";
+import type { BggData } from "../../utils/types";
+import { getBoardgames, getTop50Boargames } from "../../utils/boardgameAPI";
 
 type boardgameListState = {
-  boardgamesList: BggResponse[] | any;
+  boardgamesList: BggData[] | any;
   boardgamesLoadingStatus: "idle" | "pending" | "succeeded" | "failed";
 };
 
@@ -15,9 +15,13 @@ const initialState: boardgameListState = {
 
 export const fetchBoardgames = createAsyncThunk(
   "boardgames/fetchBoardgames",
-  async ({ start, amount }: { start: number; amount: number }, thunkAPI) => {
+  async ({ start, amount }: { start?: number; amount?: number }, thunkAPI) => {
     try {
-      const response = await getBoardgames(start, amount);
+      let response;
+      if (typeof start == "number" && typeof amount == "number") {
+        response = await getBoardgames(start, amount);
+      } else response = await getTop50Boargames();
+
       return response;
     } catch (err) {
       console.log(err);
