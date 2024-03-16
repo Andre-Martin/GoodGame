@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 const SingleGame = () => {
   const { id } = useParams();
   const { boardgameInfo, boardgameLoadingStatus } = useAppSelector(
-    (state) => state.boardgameReducer
+    (state) => state.boardgame
   );
   const dispatch = useAppDispatch();
 

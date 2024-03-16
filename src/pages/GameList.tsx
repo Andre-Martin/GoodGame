@@ -8,11 +8,11 @@ import { BggData } from "../utils/types";
 
 const GameList = () => {
   const { boardgamesLoadingStatus, boardgamesList } = useAppSelector(
-    (state) => state.boardgamesReducer
+    (state) => state.boardgameList
   );
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(fetchBoardgames({ start: 1031, amount: 50 }));
+    dispatch(fetchBoardgames({ start: 100, amount: 50 }));
   }, []);
 
   return (
