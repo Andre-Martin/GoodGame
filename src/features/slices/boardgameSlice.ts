@@ -2,10 +2,10 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getBoardgameById } from "../../utils/boardgameAPI";
 import type { BggResponse } from "../../utils/types";
 
-type initialState = {
+interface initialState {
   boardgameInfo: any;
   boardgameLoadingStatus: "idle" | "pending" | "succeed" | "failed";
-};
+}
 
 const initialState: initialState = {
   boardgameLoadingStatus: "idle",

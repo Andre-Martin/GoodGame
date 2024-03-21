@@ -4,6 +4,7 @@ const ROUTES = {
   chat: "/chat",
   boardGameList: "/boardgame-list",
   boardGameItem: "/boardgame/",
+  search: "/search/",
 };
 
 export default ROUTES;
