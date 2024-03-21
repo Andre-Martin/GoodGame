@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
 import { fetchBoardgame } from "../features/boardgame/boardgameSlice";
 import { useParams } from "react-router-dom";
+import { clearText } from "../utils/common";
 
 const SingleGame = () => {
   const { id } = useParams();
@@ -33,7 +34,7 @@ const SingleGame = () => {
                 Industrial Revolution
               </p>
             </div>
-            <p className="game-description">{boardgameInfo.description}</p>
+            <p className="game-description">{clearText(boardgameInfo.description)}</p>
             <div className="game-panel_block">
               <div className="game-panel_item">
                 <span className="sub-info">
