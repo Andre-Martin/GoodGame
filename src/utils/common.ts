@@ -9,11 +9,11 @@ export const getSearchItemsByPage = (page: number, ids: number[]) => {
   return ids.slice(lastItem - ITEMS_PER_PAGE, lastItem);
 };
 
-export const clearText = (text: string): string => {
-  const startIndex = text.indexOf("&");
-  const endIndex = text.indexOf(";");
-  text = text;
-  return text;
+
+export const clearText = (text: string): string => {  
+  const regex = /&#.*;&#.*;/g;
+  let newText = text.replaceAll(regex, '');
+  return newText;
 };
 
 export const getIDs = (start: number, amount: number): string => {
