@@ -13,7 +13,7 @@ interface KeyboardEvent {
 const Chat = () => {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useAppDispatch();
-  const { messages, cards } = useAppSelector((state) => state.chatReducer);
+  const { messages, cards } = useAppSelector((state) => state.chat);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);

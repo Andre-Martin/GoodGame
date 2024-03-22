@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
 import boardgameListReducer from "./slices/boardgameListSlice";
 import boardgameReducer from "./slices/boardgameSlice";

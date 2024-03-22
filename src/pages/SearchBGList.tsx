@@ -46,10 +46,14 @@ const SearchBGList: React.FC = () => {
   }, [idsLoadingStatus, name, page]);
 
   const content = () => {
-    if (page > Math.ceil(ids.length / ITEMS_PER_PAGE)) {
+    if (page > Math.ceil(ids.length / ITEMS_PER_PAGE) && ids.length !== 0) {
       return <div className="text-center">Page not found</div>;
-    } else if (ids.length === 0 && idsLoadingStatus == "succeeded") {
-      return <Page404 message="No results" />;
+    } else if (
+      ids.length === 0 &&
+      idsLoadingStatus == "succeeded" &&
+      resultLoadingStatus !== "pending"
+    ) {
+      return <Page404 message="No results " />;
     } else if (resultLoadingStatus !== "succeeded") {
       return <Spinner />;
     }
