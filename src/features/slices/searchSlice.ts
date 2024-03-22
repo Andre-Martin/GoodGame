@@ -54,6 +54,7 @@ const searchSlice = createSlice({
       .addCase(fetchSearchIDs.fulfilled, (state, action) => {
         state.ids = formatIDsFromSearch(action.payload);
         state.idsLoadingStatus = "succeeded";
+        state.result = [];
       })
       .addCase(fetchSearchIDs.rejected, (state) => {
         state.idsLoadingStatus = "failed";
