@@ -3,11 +3,13 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import boardgameListReducer from "./slices/boardgameListSlice";
 import boardgameReducer from "./slices/boardgameSlice";
 import chatReducer from "./slices/chatSlice";
+import searchReducer from "./slices/searchSlice";
 
 const rootReducer = combineReducers({
   boardgameList: boardgameListReducer,
   boardgame: boardgameReducer,
   chat: chatReducer,
+  search: searchReducer,
 });
 
 export function setupStore(preloadedState?: Partial<RootState>) {
