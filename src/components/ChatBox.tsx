@@ -6,7 +6,7 @@ import { uid } from "uid";
 
 const ChatBox = ({ sender, message }: chatItem) => {
   return (
-    <div className={sender ? "ai-textbox" : "user-textbox"}>
+    <div key={uid()} className={sender ? "ai-textbox" : "user-textbox"}>
       <div className="textbox-icon"></div>
       <h4 className="textbox-title fs-5">{sender ? "GoodGameBot" : "You"}</h4>
       {message.map((message, index) => (
