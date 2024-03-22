@@ -9,10 +9,10 @@ export const getSearchItemsByPage = (page: number, ids: number[]) => {
   return ids.slice(lastItem - ITEMS_PER_PAGE, lastItem);
 };
 
-
-export const clearText = (text: string): string => {  
+export const clearText = (text?: string): string => {
+  if (!text) return "";
   const regex = /&#.*;&#.*;/g;
-  let newText = text.replaceAll(regex, '');
+  let newText = text.replaceAll(regex, "");
   return newText;
 };
 
