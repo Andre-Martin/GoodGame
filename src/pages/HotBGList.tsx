@@ -8,11 +8,11 @@ import { BggData } from "../utils/types";
 
 const HotBGList: React.FC = () => {
   const { boardgamesLoadingStatus, boardgamesList } = useAppSelector(
-    (state) => state.boardgamesReducer
+    (state) => state.boardgameList
   );
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(fetchBoardgames({}));
+    dispatch(fetchBoardgames({ start: 100, amount: 50}));
   }, []);
 
   return (

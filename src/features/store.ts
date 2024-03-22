@@ -1,15 +1,24 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import boardgamesReducer from "./slices/boardgameListSlice";
+import boardgameListReducer from "./slices/boardgameListSlice";
 import boardgameReducer from "./slices/boardgameSlice";
 import chatReducer from "./slices/chatSlice";
-import searchReducer from "./slices/searchSlice";
 
-export const store = configureStore({
-  reducer: { boardgamesReducer, boardgameReducer, chatReducer, searchReducer },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }),
+const rootReducer = combineReducers({
+  boardgameList: boardgameListReducer,
+  boardgame: boardgameReducer,
+  chat: chatReducer,
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export function setupStore(preloadedState?: Partial<RootState>) {
+  return configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({ serializableCheck: false }),
+    preloadedState,
+  });
+}
+
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppStore = ReturnType<typeof setupStore>;
+export type AppDispatch = AppStore["dispatch"];
