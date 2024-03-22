@@ -3,10 +3,12 @@ import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
 import { fetchBoardgame } from "../features/slices/boardgameSlice";
 import { useParams } from "react-router-dom";
 
+import Spinner from "../components/Spinner";
+
 const SingleGame = () => {
   const { id } = useParams();
   const { boardgameInfo, boardgameLoadingStatus } = useAppSelector(
-    (state) => state.boardgameReducer
+    (state) => state.boardgame
   );
   const dispatch = useAppDispatch();
 
@@ -16,7 +18,7 @@ const SingleGame = () => {
 
   return (
     <main>
-      {boardgameLoadingStatus === "pending" && <div>Pending...</div>}
+      {boardgameLoadingStatus === "pending" && <Spinner />}
       {boardgameLoadingStatus === "succeed" && (
         <div className="game-page shadow-lg row m-0 mt-3 p-5 rounded">
           <div className="col-xs-12 col-md-4 col-lg-3">
