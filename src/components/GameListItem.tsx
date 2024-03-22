@@ -28,7 +28,7 @@ const GameListItem = ({
             </p>
             <p className="description-header__year">({year})</p>
           </div>
-          <div className="card-body">{clearText(description.slice(0, 222))}</div>
+          <div className="card-body">(description?.slice(0, 222))</div>
         </div>
       </td>
     </tr>
