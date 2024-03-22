@@ -1,18 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { searchBoardGameByName, getBoardgames } from "../../utils/boardgameAPI";
-import { getIDsFromSearch } from "../../utils/common";
+import { formatIDsFromSearch } from "../../utils/common";
 
 interface initialState {
   resultLoadingStatus: "idle" | "pending" | "succeeded" | "failed";
   idsLoadingStatus: "idle" | "pending" | "succeeded" | "failed";
-  ids: string;
+  ids: number[];
   result: any;
 }
 
 const initialState: initialState = {
   resultLoadingStatus: "idle",
   idsLoadingStatus: "idle",
-  ids: "",
+  ids: [],
   result: [],
 };
 
@@ -49,17 +49,20 @@ const searchSlice = createSlice({
       //ids
       .addCase(fetchSearchIDs.pending, (state) => {
         state.idsLoadingStatus = "pending";
+        state.result = [];
       })
       .addCase(fetchSearchIDs.fulfilled, (state, action) => {
-        state.ids = getIDsFromSearch(action.payload);
+        state.ids = formatIDsFromSearch(action.payload);
         state.idsLoadingStatus = "succeeded";
       })
       .addCase(fetchSearchIDs.rejected, (state) => {
         state.idsLoadingStatus = "failed";
+        state.result = [];
       })
       //result
       .addCase(fetchSearchContent.pending, (state) => {
         state.resultLoadingStatus = "pending";
+        state.result = [];
       })
       .addCase(fetchSearchContent.fulfilled, (state, action) => {
         state.result = action.payload;
@@ -67,6 +70,7 @@ const searchSlice = createSlice({
       })
       .addCase(fetchSearchContent.rejected, (state) => {
         state.resultLoadingStatus = "failed";
+        state.result = [];
       });
   },
 });

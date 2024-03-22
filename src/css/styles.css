@@ -142,6 +142,11 @@ section.position-relative .input-group {
   background-image: url("../img/usericon.png");
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
 @media only screen and (max-width: 992px) {
   /* games-info */
   .info-header {

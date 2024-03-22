@@ -1,7 +1,36 @@
-import { NavLink, Link } from "react-router-dom";
+import { useState } from "react";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+
 import ROUTES from "../utils/ROUTES";
 
+interface KeyboardEvent {
+  key: string;
+  preventDefault: () => void;
+}
+
+interface SubmitEvent {
+  preventDefault: () => void;
+}
+
 const Header = () => {
+  const [name, setName] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearchInput = (e: React.FormEvent<HTMLInputElement>) => {
+    setName(e.currentTarget.value);
+  };
+
+  const handleSubmit = (e: SubmitEvent) => {
+    e.preventDefault();
+    if (!name.trim()) return;
+    console.log(name);
+    navigate(`${ROUTES.search}?name=${name}&page=1`, { replace: true });
+  };
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === "Enter") handleSubmit(e);
+  };
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
@@ -38,10 +67,17 @@ const Header = () => {
             <form className="d-flex">
               <input
                 className="form-control me-sm-2"
-                type="search"
+                type="text"
                 placeholder="Search"
+                onChange={handleSearchInput}
+                onKeyDown={handleKeyDown}
+                value={name}
               />
-              <button className="btn btn-secondary my-2 my-sm-0" type="submit">
+              <button
+                className="btn btn-secondary my-2 my-sm-0"
+                type="submit"
+                onClick={handleSubmit}
+              >
                 Search
               </button>
             </form>
