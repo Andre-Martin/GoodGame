@@ -13,24 +13,21 @@ interface KeyboardEvent {
 const Chat = () => {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useAppDispatch();
-  const { messages, cards } = useAppSelector((state) => state.chat);
+  const { messages, cards } = useAppSelector((state) => state.chatReducer);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
-  const sendMessage = () => {
-    if (inputValue.trim()) {
-      dispatch(
-        sendMessageAction({ sender: false, message: [{ content: inputValue }] })
-      );
-    }
-
-    setInputValue("");
-  };
-
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === "Enter") sendMessage();
+  };
+
+  const sendMessage = () => {
+    dispatch(
+      sendMessageAction({ sender: false, message: [{ content: inputValue }] })
+    );
+    setInputValue("");
   };
 
   return (
