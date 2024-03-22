@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
 
 import GameListItem from "../components/GameListItem";
+import Spinner from "../components/Spinner";
 
 import { fetchBoardgames } from "../features/slices/boardgameListSlice";
 import { BggData } from "../utils/types";
@@ -17,7 +18,7 @@ const HotBGList: React.FC = () => {
 
   return (
     <main className="shadow-lg p-4 mt-3 rounded">
-      {boardgamesLoadingStatus === "pending" && <div>Loading...</div>}
+      {boardgamesLoadingStatus === "pending" && <Spinner />}
       {boardgamesLoadingStatus === "succeeded" && (
         <table className="table table-hover container">
           <tbody>

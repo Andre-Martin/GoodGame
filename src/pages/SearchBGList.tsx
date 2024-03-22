@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 
 import {
   fetchSearchIDs,
@@ -9,8 +9,11 @@ import {
 
 import GameListItem from "../components/GameListItem";
 import Pagination from "../components/Pagination";
+import Spinner from "../components/Spinner";
+import Page404 from "./Page404";
 
 import { concatIDs, getSearchItemsByPage } from "../utils/common";
+import { ITEMS_PER_PAGE } from "../utils/constants";
 import { BggData } from "../utils/types";
 
 const SearchBGList: React.FC = () => {
@@ -42,9 +45,19 @@ const SearchBGList: React.FC = () => {
     }
   }, [idsLoadingStatus, page]);
 
+  const content = () => {
+    if (page > ids.length / ITEMS_PER_PAGE) {
+      return <div className="text-center">Page not found</div>;
+    } else if (ids.length === 0 && idsLoadingStatus == "succeeded") {
+      return <Page404 message="No results" />;
+    } else if (resultLoadingStatus !== "succeeded") {
+      return <Spinner />;
+    }
+  };
+
   return (
     <main className="shadow-lg p-4 mt-3 rounded">
-      {resultLoadingStatus !== "succeeded" && <div>Loading...</div>}
+      {content()}
       {resultLoadingStatus === "succeeded" && (
         <>
           <table className="table table-hover container">
