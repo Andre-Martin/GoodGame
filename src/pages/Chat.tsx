@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
 
-import { sendMessage as sendMessageAction } from "../features/chat/chatSlice";
+import { sendMessage as sendMessageAction } from "../features/slices/chatSlice";
 
 import ChatCard from "../components/ChatCard";
 import ChatBox from "../components/ChatBox";
@@ -35,34 +35,34 @@ const Chat = () => {
 
   return (
     <main className="row m-0 mt-1 p-1 shadow-lg main-chat">
-      <section className="col-lg-3 d-sm-none d-md-block col-sm-0 overflow-auto">
+      <section className="col-lg-3 overflow-auto">
         {cards.map((item) => (
           <ChatCard {...item} key={item.id} />
         ))}
       </section>
-      <section className="col-lg-9 col-sm-12 shadow-lg p-0 overflow-auto">
-        <div className="chat-section ">
+
+      <section className="col-lg-9 col-sm-12 position-relative shadow-lg p-0 ">
+        <div className="chat-section overflow-auto">
           {messages.map((item, index) => (
             <ChatBox {...item} key={index} />
           ))}
-
-          <div className="input-group mx-auto">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Message GoodGameBot... "
-              value={inputValue}
-              onChange={handleChange}
-              onKeyDown={handleKeyDown}
-            />
-            <button
-              className="btn btn-outline-primary"
-              type="button"
-              onClick={sendMessage}
-            >
-              <i className="bi bi-arrow-up-square-fill fs-4"></i>
-            </button>
-          </div>
+        </div>
+        <div className="input-group mx-auto">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Message GoodGameBot... "
+            value={inputValue}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+          />
+          <button
+            className="btn btn-outline-primary"
+            type="button"
+            onClick={sendMessage}
+          >
+            <i className="bi bi-arrow-up-square-fill fs-4"></i>
+          </button>
         </div>
       </section>
     </main>
