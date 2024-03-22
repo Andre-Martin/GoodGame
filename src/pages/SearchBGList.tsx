@@ -31,7 +31,7 @@ const SearchBGList: React.FC = () => {
   console.log();
   useEffect(() => {
     if (typeof name === "string") dispatch(fetchSearchIDs(name));
-  }, []);
+  }, [name]);
 
   useEffect(() => {
     if (currentBGs.length !== 0) {
@@ -43,10 +43,10 @@ const SearchBGList: React.FC = () => {
     if (idsLoadingStatus === "succeeded") {
       setCurrentBGs(getSearchItemsByPage(page, ids));
     }
-  }, [idsLoadingStatus, page]);
+  }, [idsLoadingStatus, name, page]);
 
   const content = () => {
-    if (page > ids.length / ITEMS_PER_PAGE) {
+    if (page > Math.ceil(ids.length / ITEMS_PER_PAGE)) {
       return <div className="text-center">Page not found</div>;
     } else if (ids.length === 0 && idsLoadingStatus == "succeeded") {
       return <Page404 message="No results" />;

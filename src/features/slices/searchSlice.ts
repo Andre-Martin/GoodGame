@@ -49,6 +49,7 @@ const searchSlice = createSlice({
       //ids
       .addCase(fetchSearchIDs.pending, (state) => {
         state.idsLoadingStatus = "pending";
+        state.result = [];
       })
       .addCase(fetchSearchIDs.fulfilled, (state, action) => {
         state.ids = formatIDsFromSearch(action.payload);
@@ -56,10 +57,12 @@ const searchSlice = createSlice({
       })
       .addCase(fetchSearchIDs.rejected, (state) => {
         state.idsLoadingStatus = "failed";
+        state.result = [];
       })
       //result
       .addCase(fetchSearchContent.pending, (state) => {
         state.resultLoadingStatus = "pending";
+        state.result = [];
       })
       .addCase(fetchSearchContent.fulfilled, (state, action) => {
         state.result = action.payload;
@@ -67,6 +70,7 @@ const searchSlice = createSlice({
       })
       .addCase(fetchSearchContent.rejected, (state) => {
         state.resultLoadingStatus = "failed";
+        state.result = [];
       });
   },
 });
