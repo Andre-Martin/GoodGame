@@ -2,6 +2,13 @@ import type { BggResponse } from "./types";
 
 import type { SearchResult } from "./types";
 
+import { ITEMS_PER_PAGE } from "./constants";
+
+export const getSearchItemsByPage = (page: number, ids: number[]) => {
+  const lastItem = page * ITEMS_PER_PAGE;
+  return ids.slice(lastItem - ITEMS_PER_PAGE, lastItem);
+};
+
 export const clearText = (text: string): string => {
   const startIndex = text.indexOf("&");
   const endIndex = text.indexOf(";");
@@ -17,12 +24,16 @@ export const getIDs = (start: number, amount: number): string => {
   return result.slice(0, result.length - 1);
 };
 
-export const getIDsFromSearch = (arr: any) => {
-  let result = "";
-  arr.forEach((item: { id: number }) => {
-    result += `${item.id},`;
-  });
-  return result.slice(0, result.length - 1);
+export const concatIDs = (arr: number[]): string => {
+  return arr.join(",");
+};
+
+export const formatIDsFromSearch = (arr: any): number[] => {
+  const result = [];
+  for (const item of arr) {
+    result.push(item.id);
+  }
+  return result;
 };
 
 export const parseBoardgameInfo = (

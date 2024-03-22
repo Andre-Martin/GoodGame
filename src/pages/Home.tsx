@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
-import { fetchSearchIDs } from "../features/slices/searchSlice";
-
 import ROUTES from "../utils/ROUTES";
 
-function Home() {
+interface KeyboardEvent {
+  key: string;
+}
+
+const Home = () => {
   const [name, setName] = useState("");
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleSearchInput = (e: React.FormEvent<HTMLInputElement>) => {
@@ -18,8 +18,11 @@ function Home() {
   const handleSubmit = () => {
     if (!name.trim()) return;
 
-    dispatch(fetchSearchIDs(name));
-    navigate(`${ROUTES.search}:${name}`, { replace: true });
+    navigate(`${ROUTES.search}?name=${name}&page=1`, { replace: true });
+  };
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === "Enter") handleSubmit();
   };
 
   return (
@@ -33,6 +36,7 @@ function Home() {
           <div className="input-group mb-3">
             <input
               onChange={handleSearchInput}
+              onKeyDown={handleKeyDown}
               type="text"
               className="form-control"
               placeholder="Quick Search"
@@ -60,6 +64,6 @@ function Home() {
       </main>
     </>
   );
-}
+};
 
 export default Home;

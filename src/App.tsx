@@ -20,7 +20,7 @@ function App() {
           <Route path={ROUTES.chat} element={<Chat />} />
           <Route path={ROUTES.boardGameList} element={<HotBGList />} />
           <Route path={`${ROUTES.boardGameItem}:id`} element={<SingleGame />} />
-          <Route path={`${ROUTES.search}:name`} element={<SearchBGList />} />
+          <Route path={`${ROUTES.search}`} element={<SearchBGList />} />
         </Routes>
         <Footer />
       </div>
