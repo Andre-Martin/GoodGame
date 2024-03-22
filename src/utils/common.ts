@@ -2,11 +2,12 @@ import type { BggResponse } from "./types";
 
 import type { SearchResult } from "./types";
 
-export const clearText = (text: string): string => {
-  const startIndex = text.indexOf("&");
-  const endIndex = text.indexOf(";");
-  text = text;
-  return text;
+
+export const clearText = (text: string): string => {  
+  const regex = /&#.*;&#.*;/g;
+  let newText = text.replaceAll(regex, '');
+  return newText;
+
 };
 
 export const getIDs = (start: number, amount: number): string => {

@@ -8,7 +8,7 @@ import { BggData } from "../utils/types";
 
 const SearchBGList: React.FC = () => {
   const { result, resultLoadingStatus, idsLoadingStatus, ids } = useAppSelector(
-    (state) => state.searchReducer
+    (state) => state.search
   );
   const dispatch = useAppDispatch();
 
