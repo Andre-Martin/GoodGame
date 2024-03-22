@@ -28,7 +28,6 @@ const SearchBGList: React.FC = () => {
   const page = parseInt(searchParams.get("page") || "1");
   const name = searchParams.get("name");
 
-  console.log();
   useEffect(() => {
     if (typeof name === "string") dispatch(fetchSearchIDs(name));
   }, [name]);

@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+
+import { clearText } from "../utils/common";
 import ROUTES from "../utils/ROUTES";
-import { BggData } from "../utils/types";
+import type { BggData } from "../utils/types";
 
 const GameListItem = ({
   number,
@@ -28,7 +30,9 @@ const GameListItem = ({
             <p className="description-header__year">({year})</p>
           </div>
 
-          <div className="card-body">{description?.slice(0, 222)}</div>
+          <div className="card-body">
+            {clearText(description?.slice(0, 222))}
+          </div>
         </div>
       </td>
     </tr>
