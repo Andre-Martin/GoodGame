@@ -17,14 +17,12 @@ jobs:
         uses: actions/checkout@master
         with:
           persist-credentials: false
-          submodules: true  # TODO remove this if not using submodules in Hexo
 
       - name: Install 🔧
         run: npm install
 
       - name: Build 🏗️
         run: |
-          npm clean
           npm build
 
       - name: Deploy to GH Pages 🚀
