@@ -24,7 +24,6 @@ jobs:
 
       - name: Build 🏗️
         run: |
-          npm clean
           npm build
 
       - name: Deploy to GH Pages 🚀
