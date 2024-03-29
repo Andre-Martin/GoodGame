@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
 
-import GameListItem from "../components/GameListItem";
+import Top50ListItem from "../components/Top50ListItem";
 import Spinner from "../components/Spinner";
 
 import { fetchBoardgames } from "../features/slices/boardgameListSlice";
-import { BggData } from "../utils/types";
+import { Top50Info } from "../utils/types";
 
 const HotBGList: React.FC = () => {
   const { boardgamesLoadingStatus, boardgamesList } = useAppSelector(
@@ -22,8 +22,8 @@ const HotBGList: React.FC = () => {
       {boardgamesLoadingStatus === "succeeded" && (
         <table className="table table-hover container">
           <tbody>
-            {boardgamesList.map((item: BggData, index: number) => (
-              <GameListItem key={item.id} {...item} number={index + 1} />
+            {boardgamesList.map((item: Top50Info) => (
+              <Top50ListItem key={item.id} {...item} />
             ))}
           </tbody>
         </table>

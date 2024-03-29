@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-import type { BggData } from "../../utils/types";
-import { getBoardgames, getTop50Boargames } from "../../utils/boardgameAPI";
+import type { Top50Info } from "../../utils/types";
+import { getTop50Boargames } from "../../utils/boardgameAPI";
 
 type boardgameListState = {
-  boardgamesList: BggData[] | any;
+  boardgamesList: Top50Info[];
   boardgamesLoadingStatus: "idle" | "pending" | "succeeded" | "failed";
 };
 
@@ -15,13 +15,9 @@ const initialState: boardgameListState = {
 
 export const fetchBoardgames = createAsyncThunk(
   "boardgames/fetchBoardgames",
-  async ({ start, amount }: { start?: number; amount?: number }, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      let response;
-      if (typeof start == "number" && typeof amount == "number") {
-        response = await getBoardgames(start, amount);
-      } else response = await getTop50Boargames();
-
+      const response = await getTop50Boargames();
       return response;
     } catch (err) {
       console.log(err);
@@ -40,7 +36,7 @@ const boardgameListSlice = createSlice({
         state.boardgamesLoadingStatus = "pending";
       })
       .addCase(fetchBoardgames.fulfilled, (state, action) => {
-        state.boardgamesList = action.payload;
+        state.boardgamesList = action.payload as Top50Info[];
         state.boardgamesLoadingStatus = "succeeded";
       })
       .addCase(fetchBoardgames.rejected, (state) => {
