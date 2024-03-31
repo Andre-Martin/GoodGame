@@ -27,7 +27,6 @@ const SingleGame: React.FC = () => {
   const loadComments = () => {
     setCurrentComments((currentComments) => (currentComments += 10));
   };
-  console.log(boardgameInfo);
 
   return (
     <main>

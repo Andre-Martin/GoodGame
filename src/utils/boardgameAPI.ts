@@ -8,12 +8,13 @@ import {
 import { xml2json } from "xml-js";
 
 import {
-  getIDs,
   parseFromXMLJsonThing,
   parseFromBggSearch,
   parseFromBggThings,
   parseFromXMLJsonTop50,
-} from "./common";
+} from "./parser";
+
+import { getIDs } from "./common";
 
 import { __BASE_API } from "./constants";
 

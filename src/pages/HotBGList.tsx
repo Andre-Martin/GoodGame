@@ -13,7 +13,7 @@ const HotBGList: React.FC = () => {
   );
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(fetchBoardgames({}));
+    dispatch(fetchBoardgames());
   }, []);
 
   return (

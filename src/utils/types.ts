@@ -33,29 +33,50 @@ type SingleGameRank = {
   value: string;
 };
 
-export type SingleGameInfo = {
-  id?: string;
-  type?: string;
-  title?: string;
-  description?: string;
-  thumbnail?: string;
-  year?: string;
-  image?: string;
-  minAge?: string;
-  playtime?: string;
-  maxPlaytime?: string;
-  minPlaytime?: string;
-  maxPlayers?: string;
-  minPlayers?: string;
-  statistics: {
-    averageRating?: string;
-    ranks?: SingleGameRank[] | string;
-    userRated?: string;
-  };
-  comments?: SingleGameComment[];
+export type SingleGameStats = {
+  averageRating: string;
+  complexity: string;
+  ranks: SingleGameRank[] | SingleGameRank;
+  usersRated: string;
+  owned: string;
+  wishing: string;
+  wanting: string;
 };
 
-type BggXMLJsonComment = {
+export type SingleGameLinks = {
+  categories: string[];
+  designers: string[];
+  artists: string[];
+  publishers: string[];
+  mechanics: string[];
+  families: string[];
+  accessories: string[];
+  implementations: string[];
+  expansions: string[];
+  compilations: string[];
+};
+
+export type SingleGameInfo = {
+  id: string;
+  type: string;
+  title: string;
+  alternativeNames: string[];
+  description: string;
+  thumbnail: string;
+  year: string;
+  image: string;
+  minAge: string;
+  playtime: string;
+  maxPlaytime: string;
+  minPlaytime: string;
+  maxPlayers: string;
+  minPlayers: string;
+  statistics: SingleGameStats;
+  comments: SingleGameComment[];
+  links: SingleGameLinks;
+};
+
+type XMLJsonComment = {
   _attributes: {
     rating: string;
     username: string;
@@ -63,14 +84,14 @@ type BggXMLJsonComment = {
   };
 };
 
-type BggXMLJsonName = {
+export type XMLJsonName = {
   _attributes: {
-    type: string;
+    type: "primary" | "alternative";
     value: string;
   };
 };
 
-type BggXMLJsonRank = {
+type XMLJsonRank = {
   _attributes: {
     type: string;
     id: string;
@@ -78,84 +99,120 @@ type BggXMLJsonRank = {
     value: string;
   };
 };
+type XMLJsonLinkType =
+  | "boardgamecategory"
+  | "boardgamemechanic"
+  | "boardgamefamily"
+  | "boardgameexpansion"
+  | "boardgameaccessory"
+  | "boardgamecompilation"
+  | "boardgameimplementation"
+  | "boardgamedesigner"
+  | "boardgameartist"
+  | "boardgamepublisher";
+
+export type XMLJsonLink = {
+  _attributes: {
+    id: string;
+    type: XMLJsonLinkType;
+    value: string;
+  };
+};
+
+export type XMLJsonStats = {
+  ratings: {
+    usersrated: {
+      _attributes: {
+        value: string;
+      };
+    };
+    owned: {
+      _attributes: {
+        value: string;
+      };
+    };
+    wishing: {
+      _attributes: {
+        value: string;
+      };
+    };
+
+    wanting: {
+      _attributes: {
+        value: string;
+      };
+    };
+
+    average: {
+      _attributes: {
+        value: string;
+      };
+    };
+    averageweight: {
+      _attributes: {
+        value: string;
+      };
+    };
+    ranks: {
+      rank: XMLJsonRank[] | XMLJsonRank;
+    };
+  };
+};
+
 export type XMLJsonThingResponse = {
   items: {
     item: {
       comments?: {
-        comment: BggXMLJsonComment[];
+        comment: XMLJsonComment[];
       };
-      description?: {
+      description: {
         _text: string;
       };
       image?: {
         _text: string;
       };
-      minage?: {
+      link: XMLJsonLink[];
+      minage: {
         _attributes: {
           value: string;
         };
       };
-      maxplaytime?: {
+      maxplaytime: {
         _attributes: {
           value: string;
         };
       };
-      minplaytime?: {
+      minplaytime: {
         _attributes: {
           value: string;
         };
       };
-      maxplayers?: {
+      maxplayers: {
         _attributes: {
           value: string;
         };
       };
-      minplayers?: {
+      minplayers: {
         _attributes: {
           value: string;
         };
       };
-      name?: BggXMLJsonName[];
-      playingtime?: {
+      name: XMLJsonName[] | XMLJsonName;
+      playingtime: {
         _attributes: {
           value: string;
         };
       };
-      statistics?: {
-        ratings: {
-          usersrated: {
-            _attributes: {
-              value: string;
-            };
-          };
-          average: {
-            _attributes: {
-              value: string;
-            };
-          };
-          ranks: {
-            rank:
-              | BggXMLJsonRank[]
-              | {
-                  _attributes: {
-                    type: string;
-                    id: number;
-                    name: string;
-                    value: string;
-                  };
-                };
-          };
-        };
-      };
+      statistics: XMLJsonStats;
       thumbnail?: {
         _text: string;
       };
-      yearpublished?: {
+      yearpublished: {
         _attributes: {
           value: string;
         };
       };
-      _attributes?: {
+      _attributes: {
         id: string;
         type: string;
       };
