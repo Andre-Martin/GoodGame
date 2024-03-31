@@ -21,7 +21,7 @@ export type SearchInfo = {
   year: string;
 }[];
 
-type SingleGameComment = {
+export type SingleGameComment = {
   rating: string;
   username: string;
   value: string;

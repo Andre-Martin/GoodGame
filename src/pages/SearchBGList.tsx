@@ -14,6 +14,7 @@ import Page404 from "./Page404";
 
 import { concatIDs, getSearchItemsByPage } from "../utils/common";
 import { ITEMS_PER_PAGE } from "../utils/constants";
+import ROUTES from "../utils/ROUTES";
 import { ThingInfo } from "../utils/types";
 
 const SearchBGList: React.FC = () => {
@@ -70,7 +71,10 @@ const SearchBGList: React.FC = () => {
               ))}
             </tbody>
           </table>
-          <Pagination amountOfItems={ids.length} />
+          <Pagination
+            amountOfItems={ids.length}
+            route={`${ROUTES.search}?name=${name}`}
+          />
         </>
       )}
     </main>
