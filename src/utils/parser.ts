@@ -8,9 +8,11 @@ import type {
   XMLJsonName,
   XMLJsonLink,
   XMLJsonStats,
+  SingleGameMPItem,
   SingleGameStats,
   SingleGameComment,
   SingleGameLinks,
+  SingleGameVideo,
 } from "./types";
 
 import {
@@ -168,20 +170,63 @@ const parseXMLJsonCommonInfo = (data: XMLJsonThingResponse) => {
 const parseXMLJsonMedia = (data: XMLJsonThingResponse) => {
   let image, thumbnail;
   if (data.items.item.image !== undefined) image = data.items.item.image._text;
-  else image = "";
+  else
+    image =
+      "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg";
   if (data.items.item.thumbnail !== undefined)
     thumbnail = data.items.item.thumbnail._text;
-  else thumbnail = "";
+  else
+    thumbnail =
+      "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg";
 
   return { image, thumbnail };
 };
 
 const parseXMLJsonComments = (data: XMLJsonThingResponse) => {
   let comments: SingleGameComment[] = [];
-  if (data.items.item.comments !== undefined) {
+  if (Array.isArray(data.items.item.comments?.comment)) {
     comments = data.items.item.comments.comment.map((item) => item._attributes);
+  } else if (data.items.item.comments !== undefined) {
+    const { rating, username, value } =
+      data.items.item.comments.comment._attributes;
+    comments.push({ rating, username, value });
   }
   return comments;
+};
+
+const parseXMLJsonVideo = (data: XMLJsonThingResponse) => {
+  const result: SingleGameVideo[] = [];
+  if (data.items.item.videos.video !== undefined) {
+    data.items.item.videos.video.forEach((item) => {
+      const { title, category, language, link } = item._attributes;
+      result.push({ title, category, language, link });
+    });
+  }
+  return result;
+};
+
+const parseXMLJsonMarketplace = (data: XMLJsonThingResponse) => {
+  const result: SingleGameMPItem[] = [];
+
+  if (data.items.item.marketplacelistings !== undefined) {
+    data.items.item.marketplacelistings.listing.forEach((item) => {
+      const { link, listdate, price } = item;
+      const mpItem: SingleGameMPItem = {
+        link: {
+          href: link._attributes.href,
+          title: link._attributes.title,
+        },
+        date: listdate._attributes.value,
+        price: {
+          currency: price._attributes.currency,
+          value: price._attributes.value,
+        },
+      };
+      result.push(mpItem);
+    });
+  }
+
+  return result;
 };
 
 export const parseFromXMLJsonThing = (
@@ -203,8 +248,9 @@ export const parseFromXMLJsonThing = (
   const { image, thumbnail } = parseXMLJsonMedia(data);
 
   const description = data.items.item.description._text;
-
   const comments = parseXMLJsonComments(data);
+  const videos = parseXMLJsonVideo(data);
+  const marketplace = parseXMLJsonMarketplace(data);
 
   const result: SingleGameInfo = {
     title,
@@ -224,6 +270,8 @@ export const parseFromXMLJsonThing = (
     maxPlayers,
     statistics,
     comments,
+    videos,
+    marketplace,
   };
 
   return result;

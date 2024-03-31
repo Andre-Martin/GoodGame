@@ -34,7 +34,7 @@ export const fetchSearchContent = createAsyncThunk(
   "search/fetchSearchContent",
   async (ids: string) => {
     try {
-      const result = await getBoardgames(0, 0, ids);
+      const result = await getBoardgames(ids);
       return result;
     } catch (err) {
       console.log(err);
@@ -45,27 +45,28 @@ export const fetchSearchContent = createAsyncThunk(
 const searchSlice = createSlice({
   name: "search",
   initialState,
-  reducers: {},
+  reducers: {
+    clearResult(state) {
+      state.ids = [];
+      state.result = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       //ids
       .addCase(fetchSearchIDs.pending, (state) => {
         state.idsLoadingStatus = "pending";
-        state.result = [];
       })
       .addCase(fetchSearchIDs.fulfilled, (state, action) => {
         state.ids = formatIDsFromSearch(action.payload);
         state.idsLoadingStatus = "succeeded";
-        state.result = [];
       })
       .addCase(fetchSearchIDs.rejected, (state) => {
         state.idsLoadingStatus = "failed";
-        state.result = [];
       })
       //result
       .addCase(fetchSearchContent.pending, (state) => {
         state.resultLoadingStatus = "pending";
-        state.result = [];
       })
       .addCase(fetchSearchContent.fulfilled, (state, action) => {
         state.result = action.payload as ThingInfo[];
@@ -73,9 +74,10 @@ const searchSlice = createSlice({
       })
       .addCase(fetchSearchContent.rejected, (state) => {
         state.resultLoadingStatus = "failed";
-        state.result = [];
       });
   },
 });
+
+export const { clearResult } = searchSlice.actions;
 
 export default searchSlice.reducer;

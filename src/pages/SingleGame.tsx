@@ -4,8 +4,9 @@ import { fetchBoardgame } from "../features/slices/boardgameSlice";
 import { useParams } from "react-router-dom";
 import { uid } from "uid";
 
+import BGInfoPanel from "../components/BGInfoPanel";
+import BGCredPanel from "../components/BGCredPanel";
 import Spinner from "../components/Spinner";
-
 import CommentBox from "../components/CommentBox";
 
 import { clearText } from "../utils/common";
@@ -17,7 +18,7 @@ const SingleGame: React.FC = () => {
   );
   const dispatch = useAppDispatch();
 
-  //state for comments pagination
+  //state for comments loading
   const [currentComments, setCurrentComments] = useState<number>(10);
 
   useEffect(() => {
@@ -55,61 +56,19 @@ const SingleGame: React.FC = () => {
               <p className="game-description">
                 {clearText(boardgameInfo.description)}
               </p>
-              <div className="game-panel_block">
-                <div className="game-panel_item">
-                  <span className="sub-info">
-                    {boardgameInfo.minPlayers}-{boardgameInfo.maxPlayers}
-                    Players
-                  </span>
-                  <span className="sup-info">Community: 2-4 --- Best: 3-4</span>
-                </div>
-                <div className="game-panel_item">
-                  <span className="sub-info">
-                    {boardgameInfo.minPlaytime}-{boardgameInfo.maxPlaytime}min
-                  </span>
-                  <span className="sup-info">Playing Time</span>
-                </div>
-                <div className="game-panel_item">
-                  <span className="sub-info">Age: {boardgameInfo.minAge}+</span>
-                  <span className="sup-info">
-                    Community: {boardgameInfo.minAge}+
-                  </span>
-                </div>
-                <div className="game-panel_item">
-                  <span className="sub-info">Weight: 3.88/5</span>
-                  <span className="sup-info">'Complexity' Rating</span>
-                </div>
-              </div>
+              <BGInfoPanel
+                minPlayers={boardgameInfo.minPlayers}
+                maxPlayers={boardgameInfo.maxPlayers}
+                minAge={boardgameInfo.minAge}
+                minPlaytime={boardgameInfo.minPlaytime}
+                maxPlaytime={boardgameInfo.maxPlaytime}
+                complexity={boardgameInfo.statistics.complexity}
+              />
 
-              <ul className="m-0 p-0">
-                <li>
-                  <span className="text-danger-emphasis">
-                    Alternatives Names:
-                  </span>
-                  <span className="fw-light">
-                    Brass, YooMama, Nutella Lover
-                  </span>
-                </li>
-                <li>
-                  <span className="text-danger-emphasis">Designers</span>
-                  <span className="fw-light">
-                    Gavana Brown, Matt Tolman, Martin Wallace
-                  </span>
-                </li>
-                <li>
-                  <span className="text-danger-emphasis"> Artists:</span>
-                  <span className="fw-light">
-                    Gavan Brown, Lina Cossette, David Forest, Damien Mammoliti,
-                    Matt Tolman
-                  </span>
-                </li>
-                <li>
-                  <span className="text-danger-emphasis">Publisher: </span>
-                  <span className="fw-light">
-                    Roxley, Arclight Games, Board Game Rookie
-                  </span>
-                </li>
-              </ul>
+              <BGCredPanel
+                alternativeNames={boardgameInfo.alternativeNames}
+                links={boardgameInfo.links}
+              />
             </div>
           </div>
           <section className="shadow rounded mt-5">

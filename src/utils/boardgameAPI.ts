@@ -39,16 +39,12 @@ export const getTop50Boargames = async () => {
   }
 };
 
-export const getBoardgames = async (
-  start: number,
-  amount: number,
-  ids?: string
-) => {
+export const getBoardgames = async (ids: string) => {
   try {
-    if (!ids) ids = getIDs(start, amount);
     const { data } = await axios.get(`${__BASE_API}thing?id=${ids}&versions=1`);
-    const bggResponse: BggThingResponse | null =
-      parseBggXmlApi2ThingResponse(data);
+    const bggResponse: BggThingResponse = parseBggXmlApi2ThingResponse(
+      data
+    ) as BggThingResponse;
     return parseFromBggThings(bggResponse);
   } catch (err) {
     console.log(err);
@@ -58,7 +54,7 @@ export const getBoardgames = async (
 export const getBoardgameById = async (id: number) => {
   try {
     const { data } = await axios.get(
-      `${__BASE_API}thing?id=${id}&versions=1&comments=1&stats=1`
+      `${__BASE_API}thing?id=${id}&comments=1&stats=1&videos=1&marketplace=1`
     );
     const XMLJsonResponse: XMLJsonThingResponse = JSON.parse(
       xml2json(data, { compact: true })

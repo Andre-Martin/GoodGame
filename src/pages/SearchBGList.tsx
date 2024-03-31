@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import {
   fetchSearchIDs,
   fetchSearchContent,
+  clearResult,
 } from "../features/slices/searchSlice";
 
 import SearchListItem from "../components/SearchListItem";
@@ -15,7 +16,7 @@ import Page404 from "./Page404";
 import { concatIDs, getSearchItemsByPage } from "../utils/common";
 import { ITEMS_PER_PAGE } from "../utils/constants";
 import ROUTES from "../utils/ROUTES";
-import { ThingInfo } from "../utils/types";
+import type { ThingInfo } from "../utils/types";
 
 const SearchBGList: React.FC = () => {
   const { result, resultLoadingStatus, idsLoadingStatus, ids } = useAppSelector(
@@ -30,6 +31,7 @@ const SearchBGList: React.FC = () => {
   const name = searchParams.get("name");
 
   useEffect(() => {
+    dispatch(clearResult());
     if (typeof name === "string") dispatch(fetchSearchIDs(name));
   }, [name]);
 

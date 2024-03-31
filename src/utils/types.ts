@@ -56,24 +56,45 @@ export type SingleGameLinks = {
   compilations: string[];
 };
 
+export type SingleGameVideo = {
+  link: string;
+  category: string;
+  title: string;
+  language: string;
+};
+
+export type SingleGameMPItem = {
+  link: {
+    href: string;
+    title: string;
+  };
+  date: string;
+  price: {
+    currency: string;
+    value: string;
+  };
+};
+
 export type SingleGameInfo = {
   id: string;
   type: string;
   title: string;
-  alternativeNames: string[];
   description: string;
   thumbnail: string;
-  year: string;
   image: string;
+  year: string;
+  alternativeNames: string[];
+  statistics: SingleGameStats;
+  comments: SingleGameComment[];
+  links: SingleGameLinks;
+  videos: SingleGameVideo[];
+  marketplace: SingleGameMPItem[];
   minAge: string;
   playtime: string;
   maxPlaytime: string;
   minPlaytime: string;
   maxPlayers: string;
   minPlayers: string;
-  statistics: SingleGameStats;
-  comments: SingleGameComment[];
-  links: SingleGameLinks;
 };
 
 type XMLJsonComment = {
@@ -159,11 +180,48 @@ export type XMLJsonStats = {
   };
 };
 
+export type XMLJsonVideo = {
+  _attributes: {
+    id: string;
+    title: string;
+    category: string;
+    language: string;
+    link: string;
+  };
+};
+
+export type XMLJsonMPItem = {
+  link: {
+    _attributes: {
+      href: string;
+      title: string;
+    };
+  };
+  listdate: {
+    _attributes: {
+      value: string;
+    };
+  };
+  price: {
+    _attributes: {
+      currency: string;
+      value: string;
+    };
+  };
+};
+
 export type XMLJsonThingResponse = {
   items: {
     item: {
-      comments?: {
-        comment: XMLJsonComment[];
+      name: XMLJsonName[] | XMLJsonName;
+      yearpublished: {
+        _attributes: {
+          value: string;
+        };
+      };
+      _attributes: {
+        id: string;
+        type: string;
       };
       description: {
         _text: string;
@@ -171,7 +229,23 @@ export type XMLJsonThingResponse = {
       image?: {
         _text: string;
       };
+      thumbnail?: {
+        _text: string;
+      };
       link: XMLJsonLink[];
+      comments?: {
+        comment: XMLJsonComment[] | XMLJsonComment;
+      };
+      statistics: XMLJsonStats;
+      videos: {
+        video?: XMLJsonVideo[];
+        _attributes?: {
+          total: string;
+        };
+      };
+      marketplacelistings?: {
+        listing: XMLJsonMPItem[];
+      };
       minage: {
         _attributes: {
           value: string;
@@ -197,24 +271,11 @@ export type XMLJsonThingResponse = {
           value: string;
         };
       };
-      name: XMLJsonName[] | XMLJsonName;
+
       playingtime: {
         _attributes: {
           value: string;
         };
-      };
-      statistics: XMLJsonStats;
-      thumbnail?: {
-        _text: string;
-      };
-      yearpublished: {
-        _attributes: {
-          value: string;
-        };
-      };
-      _attributes: {
-        id: string;
-        type: string;
       };
     };
   };
