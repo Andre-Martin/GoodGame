@@ -8,9 +8,9 @@ import {
   clearResult,
 } from "../features/slices/searchSlice";
 
-import SearchListItem from "../../frontend/components/SearchListItem";
-import Pagination from "../../frontend/components/Pagination";
-import Spinner from "../../frontend/components/Spinner";
+import SearchListItem from "../components/SearchListItem";
+import Pagination from "../components/Pagination";
+import Spinner from "../components/Spinner";
 import Page404 from "./Page404";
 
 import { concatIDs, getSearchItemsByPage } from "../utils/common";

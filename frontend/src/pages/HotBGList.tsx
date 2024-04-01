@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
 
-import Top50ListItem from "../../frontend/components/Top50ListItem";
-import Spinner from "../../frontend/components/Spinner";
+import Top50ListItem from "../components/Top50ListItem";
+import Spinner from "../components/Spinner";
 
 import { fetchBoardgames } from "../features/slices/boardgameListSlice";
 import { Top50Info } from "../utils/types";

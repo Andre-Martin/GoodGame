@@ -3,13 +3,12 @@ import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
 import { fetchBoardgame } from "../features/slices/boardgameSlice";
 import { useParams } from "react-router-dom";
 
-import BGInfoPanel from "../../frontend/components/BGInfoPanel";
-import BGCredPanel from "../../frontend/components/BGCredPanel";
-import Spinner from "../../frontend/components/Spinner";
+import BGInfoPanel from "../components/BGInfoPanel";
+import BGCredPanel from "../components/BGCredPanel";
+import BasicTabs from "../components/BGTabPanel";
+import Spinner from "../components/Spinner";
 
 import { clearText } from "../utils/common";
-import BasicTabs from "../../frontend/components/BGTabPanel";
-
 const SingleGame: React.FC = () => {
   const { id } = useParams();
   const { boardgameInfo, boardgameLoadingStatus } = useAppSelector(

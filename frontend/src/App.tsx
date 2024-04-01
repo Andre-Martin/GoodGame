@@ -1,9 +1,9 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router";
 
-import Header from "../frontend/components/Header";
-import Footer from "../frontend/components/Footer";
-import Spinner from "../frontend/components/Spinner";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Spinner from "./components/Spinner";
 
 import ROUTES from "./utils/ROUTES";
 

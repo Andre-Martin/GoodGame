@@ -3,8 +3,8 @@ import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
 
 import { sendMessage as sendMessageAction } from "../features/slices/chatSlice";
 
-import ChatCard from "../../frontend/components/ChatCard";
-import ChatBox from "../../frontend/components/ChatBox";
+import ChatCard from "../components/ChatCard";
+import ChatBox from "../components/ChatBox";
 
 interface KeyboardEvent {
   key: string;

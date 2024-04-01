@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ErrorMessage from "../../frontend/components/ErrorMessage";
+import ErrorMessage from "../components/ErrorMessage";
 
 type Props = {
   message?: string;
