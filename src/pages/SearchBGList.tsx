@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 import {
   fetchSearchIDs,
   fetchSearchContent,
+  clearResult,
 } from "../features/slices/searchSlice";
 
-import GameListItem from "../components/GameListItem";
+import SearchListItem from "../components/SearchListItem";
 import Pagination from "../components/Pagination";
 import Spinner from "../components/Spinner";
 import Page404 from "./Page404";
 
 import { concatIDs, getSearchItemsByPage } from "../utils/common";
 import { ITEMS_PER_PAGE } from "../utils/constants";
-import { BggData } from "../utils/types";
+import ROUTES from "../utils/ROUTES";
+import type { ThingInfo } from "../utils/types";
 
 const SearchBGList: React.FC = () => {
   const { result, resultLoadingStatus, idsLoadingStatus, ids } = useAppSelector(
@@ -29,6 +31,7 @@ const SearchBGList: React.FC = () => {
   const name = searchParams.get("name");
 
   useEffect(() => {
+    dispatch(clearResult());
     if (typeof name === "string") dispatch(fetchSearchIDs(name));
   }, [name]);
 
@@ -65,12 +68,15 @@ const SearchBGList: React.FC = () => {
         <>
           <table className="table table-hover container">
             <tbody>
-              {result?.map((item: BggData, index: number) => (
-                <GameListItem key={item.id} {...item} number={index + 1} />
+              {result?.map((item: ThingInfo, index: number) => (
+                <SearchListItem key={item.id} {...item} number={index + 1} />
               ))}
             </tbody>
           </table>
-          <Pagination amountOfItems={ids.length} />
+          <Pagination
+            amountOfItems={ids.length}
+            route={`${ROUTES.search}?name=${name}`}
+          />
         </>
       )}
     </main>
