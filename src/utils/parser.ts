@@ -15,7 +15,7 @@ import type {
   SingleGameVideo,
 } from "./types";
 
-import {
+import type {
   BggThingResponse,
   BggSearchResponse,
 } from "@code-bucket/board-game-geek";
@@ -90,45 +90,70 @@ const parseBggXMLJsonLinks = (data: XMLJsonLink[]) => {
 const parseXMLJsonStats = (data: XMLJsonStats) => {
   const statistics: SingleGameStats = {
     averageRating: "",
-    usersRated: "",
-    ranks: {
-      type: "",
-      id: "",
-      name: "",
-      value: "",
-    },
     complexity: "",
+    buyersAverage: "",
+    median: "",
+    totalComments: "",
+    complexityRated: "",
     owned: "",
-    wanting: "",
+    stddev: "",
+    trading: "",
+    usersRated: "",
     wishing: "",
+    wanting: "",
+    ranks: [
+      {
+        type: "",
+        id: "",
+        name: "",
+        fullName: "",
+        value: "",
+      },
+    ],
   }; //returned value
-  const { average, usersrated, averageweight, ranks, owned, wanting, wishing } =
-    data.ratings;
+  const {
+    average,
+    averageweight,
+    bayesaverage,
+    median,
+    numcomments,
+    numweights,
+    owned,
+    ranks,
+    stddev,
+    trading,
+    usersrated,
+    wanting,
+    wishing,
+  } = data.ratings;
 
-  statistics.averageRating =
-    average._attributes.value === "0" ? "N/A" : average._attributes.value;
+  statistics.averageRating = isNA(average);
+  statistics.complexity = isNA(averageweight);
+  statistics.buyersAverage = isNA(bayesaverage);
+  statistics.median = isNA(median);
+  statistics.totalComments = isNA(numcomments);
+  statistics.complexityRated = isNA(numweights);
+  statistics.owned = isNA(owned);
+  statistics.stddev = isNA(stddev);
+  statistics.trading = isNA(trading);
+  statistics.usersRated = isNA(usersrated);
+  statistics.wishing = isNA(wishing);
+  statistics.wanting = isNA(wanting);
 
-  statistics.usersRated = usersrated._attributes.value;
-  statistics.complexity =
-    averageweight._attributes.value === "0"
-      ? "N/A"
-      : averageweight._attributes.value;
-
-  statistics.owned = owned._attributes.value;
-  statistics.wishing = wishing._attributes.value;
-  statistics.wanting = wanting._attributes.value;
   if (Array.isArray(ranks.rank)) {
     statistics.ranks = ranks.rank.map((item) => {
       return {
         name: item._attributes.name,
+        fullName: item._attributes.friendlyname,
         value: item._attributes.value,
         id: item._attributes.id,
         type: item._attributes.type,
       };
     });
   } else {
-    statistics.ranks = {
+    statistics.ranks[0] = {
       name: ranks.rank._attributes.name,
+      fullName: ranks.rank._attributes.friendlyname,
       type: ranks.rank._attributes.name,
       id: ranks.rank._attributes.id,
       value: ranks.rank._attributes.value,
@@ -196,11 +221,33 @@ const parseXMLJsonComments = (data: XMLJsonThingResponse) => {
 
 const parseXMLJsonVideo = (data: XMLJsonThingResponse) => {
   const result: SingleGameVideo[] = [];
-  if (data.items.item.videos.video !== undefined) {
+  if (Array.isArray(data.items.item.videos.video)) {
     data.items.item.videos.video.forEach((item) => {
-      const { title, category, language, link } = item._attributes;
-      result.push({ title, category, language, link });
+      const { title, category, language, link, username, postdate, id } =
+        item._attributes;
+      result.push({
+        title,
+        category,
+        language,
+        link,
+        author: username,
+        date: postdate,
+        id,
+      });
     });
+  } else if (data.items.item.videos.video !== undefined) {
+    const { title, category, language, link, username, postdate, id } =
+      data.items.item.videos.video._attributes;
+    const video: SingleGameVideo = {
+      title,
+      category,
+      language,
+      link,
+      author: username,
+      date: postdate,
+      id,
+    };
+    result.push(video);
   }
   return result;
 };
@@ -208,7 +255,7 @@ const parseXMLJsonVideo = (data: XMLJsonThingResponse) => {
 const parseXMLJsonMarketplace = (data: XMLJsonThingResponse) => {
   const result: SingleGameMPItem[] = [];
 
-  if (data.items.item.marketplacelistings !== undefined) {
+  if (Array.isArray(data.items.item.marketplacelistings?.listing)) {
     data.items.item.marketplacelistings.listing.forEach((item) => {
       const { link, listdate, price } = item;
       const mpItem: SingleGameMPItem = {
@@ -224,8 +271,22 @@ const parseXMLJsonMarketplace = (data: XMLJsonThingResponse) => {
       };
       result.push(mpItem);
     });
+  } else if (data.items.item.marketplacelistings?.listing !== undefined) {
+    const { link, listdate, price } =
+      data.items.item.marketplacelistings.listing;
+    const mpItem: SingleGameMPItem = {
+      link: {
+        href: link._attributes.href,
+        title: link._attributes.title,
+      },
+      date: listdate._attributes.value,
+      price: {
+        currency: price._attributes.currency,
+        value: price._attributes.value,
+      },
+    };
+    result.push(mpItem);
   }
-
   return result;
 };
 

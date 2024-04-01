@@ -14,8 +14,6 @@ import {
   parseFromXMLJsonTop50,
 } from "./parser";
 
-import { getIDs } from "./common";
-
 import { __BASE_API } from "./constants";
 
 //types

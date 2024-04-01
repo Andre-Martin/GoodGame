@@ -5,6 +5,13 @@ export const getSearchItemsByPage = (page: number, ids: number[]) => {
   return ids.slice(lastItem - ITEMS_PER_PAGE, lastItem);
 };
 
+export const getYoutubeImgByVideoID = (url: string) => {
+  const index = url.indexOf("="),
+    videoID = url.substring(index + 1),
+    imageURL = `http://img.youtube.com/vi/${videoID}/hqdefault.jpg`;
+  return imageURL;
+};
+
 export const clearText = (text?: string): string => {
   if (!text) return "";
   const regex = /&#.*;&#.*;/g;

@@ -31,16 +31,23 @@ type SingleGameRank = {
   id: string;
   name: string;
   value: string;
+  fullName: string;
 };
 
 export type SingleGameStats = {
   averageRating: string;
   complexity: string;
-  ranks: SingleGameRank[] | SingleGameRank;
-  usersRated: string;
+  buyersAverage: string;
+  median: string;
+  totalComments: string;
+  complexityRated: string;
   owned: string;
+  stddev: string;
+  trading: string;
+  usersRated: string;
   wishing: string;
   wanting: string;
+  ranks: SingleGameRank[];
 };
 
 export type SingleGameLinks = {
@@ -61,6 +68,9 @@ export type SingleGameVideo = {
   category: string;
   title: string;
   language: string;
+  author: string;
+  id: string;
+  date: string;
 };
 
 export type SingleGameMPItem = {
@@ -118,6 +128,7 @@ type XMLJsonRank = {
     id: string;
     name: string;
     value: string;
+    friendlyname: string;
   };
 };
 type XMLJsonLinkType =
@@ -174,6 +185,36 @@ export type XMLJsonStats = {
         value: string;
       };
     };
+    bayesaverage: {
+      _attributes: {
+        value: string;
+      };
+    };
+    median: {
+      _attributes: {
+        value: string;
+      };
+    };
+    numcomments: {
+      _attributes: {
+        value: string;
+      };
+    };
+    stddev: {
+      _attributes: {
+        value: string;
+      };
+    };
+    trading: {
+      _attributes: {
+        value: string;
+      };
+    };
+    numweights: {
+      _attributes: {
+        value: string;
+      };
+    };
     ranks: {
       rank: XMLJsonRank[] | XMLJsonRank;
     };
@@ -187,6 +228,8 @@ export type XMLJsonVideo = {
     category: string;
     language: string;
     link: string;
+    postdate: string;
+    username: string;
   };
 };
 
@@ -238,13 +281,13 @@ export type XMLJsonThingResponse = {
       };
       statistics: XMLJsonStats;
       videos: {
-        video?: XMLJsonVideo[];
+        video?: XMLJsonVideo[] | XMLJsonVideo;
         _attributes?: {
           total: string;
         };
       };
       marketplacelistings?: {
-        listing: XMLJsonMPItem[];
+        listing: XMLJsonMPItem[] | XMLJsonMPItem;
       };
       minage: {
         _attributes: {
