@@ -1,3 +1,7 @@
+import { Grid, Paper, Avatar, Typography } from "@mui/material";
+
+import userIcon from "../img/usericon.png";
+
 import type { SingleGameComment } from "../utils/types";
 
 const CommentBox = ({ rating, value, username }: SingleGameComment) => {
@@ -13,15 +17,24 @@ const CommentBox = ({ rating, value, username }: SingleGameComment) => {
   }
 
   return (
-    <div className="row mx-0 my-2 border-top">
-      <div className="col-2 d-flex justify-content-center align-items-center">
-        <span className={`${ratingColor} p-3 rounded`}>{rating}</span>
-      </div>
-      <div className="col-10">
-        <p className="text-info">{username}</p>
-        <p>{value}</p>
-      </div>
-    </div>
+    <Paper style={{ padding: "40px 20px" }}>
+      <Grid container spacing={2}>
+        <Grid item xs={2}>
+          <Avatar
+            alt={username + " icon"}
+            src={userIcon}
+            sx={{ display: "block", mx: "auto" }}
+          />
+        </Grid>
+        <Grid item xs={8} justifyContent="left">
+          <Typography color="blue">{username}</Typography>
+          <Typography>{value}</Typography>
+        </Grid>
+        <Grid item xs={2} justifyContent="center">
+          <span className={`${ratingColor} p-3 rounded`}>{rating}</span>
+        </Grid>
+      </Grid>
+    </Paper>
   );
 };
 

@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
-import ErrorMessage from "../components/ErrorMessage";
+import { Box, Typography } from "@mui/material";
+
+import ErrorMessage from "../reusableComponents/ErrorMessage";
+import ROUTES from "../utils/ROUTES";
 
 type Props = {
   message?: string;
@@ -7,15 +10,15 @@ type Props = {
 
 const Page404 = ({ message }: Props) => {
   return (
-    <div>
+    <Box sx={{ m: 4 }}>
       <ErrorMessage />
-      <p className="text-center">
+      <Typography textAlign="center">
         {message ? message : "The page doesn't exist."}
-        <Link className="text-info" to="/">
+        <Link className="text-info" to={ROUTES.home}>
           Back to Main Page
         </Link>
-      </p>
-    </div>
+      </Typography>
+    </Box>
   );
 };
 

@@ -27,15 +27,21 @@ export default function VerticalTabs() {
 
   return (
     <Grid container>
-      <Grid item xs={12} md={4} lg={3}>
-        <Tabs orientation="vertical" value={value} onChange={handleChange}>
+      <Grid item xs={12}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="secondary"
+          textColor="secondary"
+          centered
+        >
           <Tab label="Comments" />
           <Tab label="Videos" />
           <Tab label="Stats" />
           <Tab label="Marketplace" />
         </Tabs>
       </Grid>
-      <Grid item xs={12} md={8} lg={9}>
+      <Grid item xs={12} mt={2}>
         <TabPanel value={value} index={0}>
           <CommentTab />
         </TabPanel>

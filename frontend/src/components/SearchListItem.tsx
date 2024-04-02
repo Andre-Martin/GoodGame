@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
+import { Grid, Box, Typography } from "@mui/material";
 
-import { clearText } from "../../src/utils/common";
 import ROUTES from "../../src/utils/ROUTES";
+import { clearText } from "../../src/utils/common";
+import { IMAGE_NOT_FOUND } from "../utils/constants";
+
 import type { ThingInfo } from "../../src/utils/types";
 
 interface Props extends ThingInfo {
@@ -18,28 +21,37 @@ const SearchListItem = ({
   thumbnail,
 }: Props) => {
   return (
-    <tr className="row">
-      <td className="col-md-1">{number}</td>
-      <td className="col-xs-12 col-md-4 col-lg-2">
+    <Grid container spacing={3} borderBottom={1}>
+      <Grid item xs={1}>
+        {number}
+      </Grid>
+      <Grid item xs={12} md={4} lg={2}>
         <Link to={`${ROUTES.boardGameItem}${id}`}>
-          <img src={thumbnail} alt={title} className="table-img_block" />
+          <Box
+            component="img"
+            sx={{
+              height: 150,
+              width: "100%",
+              objectFit: "cover",
+            }}
+            src={image ? image : IMAGE_NOT_FOUND}
+            alt={title}
+          />
         </Link>
-      </td>
-      <td className="col-xs-12 col-md-7 col-lg-9">
-        <div className="table-description">
-          <div className="description-header">
-            <p className="description-header__title">
-              <Link to={ROUTES.boardGameItem + id}>{title}</Link>
-            </p>
-            <p className="description-header__year">({year})</p>
-          </div>
+      </Grid>
+      <Grid item xs={12} md={7} lg={9}>
+        <Box>
+          <Typography variant="h5">
+            <Link style={{ color: "blue" }} to={ROUTES.boardGameItem + id}>
+              {title}
+            </Link>
+            <span>({year ? year : "N/A"})</span>
+          </Typography>
+        </Box>
 
-          <div className="card-body">
-            {clearText(description?.slice(0, 222))}
-          </div>
-        </div>
-      </td>
-    </tr>
+        <Typography>{clearText(description)}</Typography>
+      </Grid>
+    </Grid>
   );
 };
 

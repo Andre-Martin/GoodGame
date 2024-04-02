@@ -1,9 +1,11 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router";
 
+import { Container } from "@mui/material";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Spinner from "./components/Spinner";
+import Spinner from "./reusableComponents/Spinner";
 
 import ROUTES from "./utils/ROUTES";
 
@@ -18,7 +20,7 @@ function App() {
   return (
     <>
       <Suspense fallback={<Spinner />}>
-        <div className="container">
+        <Container>
           <Header />
           <Routes>
             <Route path={ROUTES.home} element={<Home />} />
@@ -32,7 +34,7 @@ function App() {
             <Route path="*" element={<Page404 />} />
           </Routes>
           <Footer />
-        </div>
+        </Container>
       </Suspense>
     </>
   );

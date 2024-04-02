@@ -1,78 +1,84 @@
-import { Grid } from "@mui/material";
 import { useAppSelector } from "../features/hooks/redux.hooks";
+
+import { Grid, Box, List, Typography } from "@mui/material";
+
+import ListItemFlex from "../reusableComponents/ListItemFlex";
 
 const StatTab = () => {
   const { boardgameInfo } = useAppSelector((state) => state.boardgame);
   return (
     <Grid container spacing={4}>
       <Grid item xs={12} md={6}>
-        <div>
-          <h4 className="text-center">GAME STATS</h4>
-          <ul className="list-group list-group-flush">
-            <li className="list-group-item list-group-item-light d-flex justify-content-between align-items-center">
+        <Box sx={{ m: 4 }}>
+          <List>
+            <Typography variant="h6" textAlign="center">
+              Game Stats
+            </Typography>
+            <ListItemFlex>
               <span>Average Ratig</span>
               <span>{boardgameInfo.statistics.averageRating}</span>
-            </li>
-            <li className="list-group-item list-group-item-light d-flex justify-content-between align-items-center">
+            </ListItemFlex>
+            <ListItemFlex>
               <span>No. of Ratings</span>
               <span>{boardgameInfo.statistics.usersRated}</span>
-            </li>
-            <li className="list-group-item list-group-item-light d-flex justify-content-between align-items-center">
+            </ListItemFlex>
+            <ListItemFlex>
               <span>Buyers Average</span>
               <span>{boardgameInfo.statistics.buyersAverage}</span>
-            </li>
-            <li className="list-group-item list-group-item-light d-flex justify-content-between align-items-center">
+            </ListItemFlex>
+            <ListItemFlex>
               <span>Std. Deviation</span>
               <span>{boardgameInfo.statistics.stddev}</span>
-            </li>
-            <li className="list-group-item list-group-item-light d-flex justify-content-between align-items-center">
+            </ListItemFlex>
+            <ListItemFlex>
               <span>Median</span>
               <span>{boardgameInfo.statistics.median}</span>
-            </li>
-            <li className="list-group-item list-group-item-light d-flex justify-content-between align-items-center">
+            </ListItemFlex>
+            <ListItemFlex>
               <span>Complexity</span>
               <span>{boardgameInfo.statistics.complexity}</span>
-            </li>
-            <li className="list-group-item list-group-item-light d-flex justify-content-between align-items-center">
+            </ListItemFlex>
+            <ListItemFlex>
               <span>Comments</span>
               <span>{boardgameInfo.statistics.totalComments}</span>
-            </li>
-          </ul>
-        </div>
+            </ListItemFlex>
+          </List>
+        </Box>
       </Grid>
       <Grid item xs={12} md={6}>
-        <div>
-          <h4 className="text-center">Collection Stats</h4>
-          <ul className="list-group ">
-            <li className="list-group-item list-group-item-light d-flex justify-content-between align-items-center">
+        <Box sx={{ m: 4 }}>
+          <Typography variant="h6" textAlign="center">
+            Collection Stats
+          </Typography>
+          <List>
+            <ListItemFlex>
               <span>Own</span>
               <span>{boardgameInfo.statistics.owned}</span>
-            </li>
+            </ListItemFlex>
 
-            <li className="list-group-item list-group-item-light d-flex justify-content-between align-items-center">
+            <ListItemFlex>
               <span>Want In Trade</span>
               <span>{boardgameInfo.statistics.trading}</span>
-            </li>
-            <li className="list-group-item list-group-item-light d-flex justify-content-between align-items-center">
+            </ListItemFlex>
+            <ListItemFlex>
               <span>Wishlist</span>
               <span>{boardgameInfo.statistics.wishing}</span>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="text-center">Game Ranks</h4>
-          <ul className="list-group ">
+            </ListItemFlex>
+          </List>
+        </Box>
+        <Box sx={{ m: 4 }}>
+          <Typography variant="h6" textAlign="center">
+            Game Ranks
+          </Typography>
+          <List>
             {boardgameInfo.statistics.ranks.map((item) => (
-              <li
-                className="list-group-item list-group-item-light d-flex justify-content-between align-items-center"
-                key={item.id}
-              >
+              <ListItemFlex key={item.id}>
                 <span>{item.fullName}</span>
                 <span>No {item.value}</span>
-              </li>
+              </ListItemFlex>
             ))}
-          </ul>
-        </div>
+          </List>
+        </Box>
       </Grid>
     </Grid>
   );

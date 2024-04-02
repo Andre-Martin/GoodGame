@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { useAppSelector } from "../features/hooks/redux.hooks";
 import { uid } from "uid";
 
 import CommentBox from "./CommentBox";
-import { useState } from "react";
-import { SingleGameComment } from "../utils/types";
+import ButtonLoad from "../reusableComponents/ButtonLoad";
+import TextNotFound from "../reusableComponents/TextNotFound";
+
+import type { SingleGameComment } from "../utils/types";
 
 const CommentTab = () => {
-  const { boardgameInfo } = useAppSelector((state) => state.boardgame);
+  const { comments } = useAppSelector((state) => state.boardgame.boardgameInfo);
   const [currentComments, setCurrentComments] = useState<number>(10);
   const loadComments = () => {
     setCurrentComments((currentComments) => (currentComments += 10));
@@ -14,21 +17,16 @@ const CommentTab = () => {
 
   return (
     <>
-      <h2 className="text-center">Comments</h2>
-      {boardgameInfo.comments
-        .slice(0, currentComments)
-        .map((item: SingleGameComment) => (
-          <CommentBox {...item} key={uid()} />
-        ))}
+      <TextNotFound content="There is no comments yet" array={comments} />
+      {comments.slice(0, currentComments).map((item: SingleGameComment) => (
+        <CommentBox {...item} key={uid()} />
+      ))}
 
-      {boardgameInfo.comments.length > currentComments ? (
-        <button
-          onClick={loadComments}
-          className="btn btn-outline-primary d-block mx-auto my-3"
-        >
-          Load More
-        </button>
-      ) : null}
+      <ButtonLoad
+        total={comments.length}
+        current={currentComments}
+        onClick={loadComments}
+      />
     </>
   );
 };

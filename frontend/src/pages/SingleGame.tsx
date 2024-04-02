@@ -1,14 +1,18 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
-import { fetchBoardgame } from "../features/slices/boardgameSlice";
 import { useParams } from "react-router-dom";
 
-import BGInfoPanel from "../components/BGInfoPanel";
-import BGCredPanel from "../components/BGCredPanel";
-import BasicTabs from "../components/BGTabPanel";
-import Spinner from "../components/Spinner";
+import { Box, Grid, Typography } from "@mui/material";
+
+import BGInfoPanel from "../components/InfoPanel";
+import BGCredPanel from "../components/CredPanel";
+import BasicTabs from "../components/TabPanel";
+import Spinner from "../reusableComponents/Spinner";
+
+import { fetchBoardgame } from "../features/slices/boardgameSlice";
 
 import { clearText } from "../utils/common";
+
 const SingleGame: React.FC = () => {
   const { id } = useParams();
   const { boardgameInfo, boardgameLoadingStatus } = useAppSelector(
@@ -16,40 +20,40 @@ const SingleGame: React.FC = () => {
   );
   const dispatch = useAppDispatch();
 
-  //state for comments loading
-
   useEffect(() => {
     if (typeof id === "string") dispatch(fetchBoardgame(+id));
   }, [id]);
 
   return (
-    <main className="">
+    <Box component="main">
       {boardgameLoadingStatus === "pending" && <Spinner />}
       {boardgameLoadingStatus === "succeed" && (
         <>
-          <div className="shadow rounded">
-            <div className="row m-0 mt-3 p-5 ">
-              <div className="col-xs-12 col-md-4 col-lg-3">
-                <img
-                  className="game-img"
+          <Box sx={{ boxShadow: 4, borderRadius: 4 }}>
+            <Grid container sx={{ mt: 3, p: 5 }} spacing={3}>
+              <Grid item xs={12} md={5}>
+                <Box
+                  component="img"
+                  sx={{
+                    maxWidth: "100%",
+                    height: 400,
+                    display: "block",
+                    mx: "auto",
+                  }}
                   src={boardgameInfo.image}
                   alt={boardgameInfo.title}
                 />
-              </div>
-              <div className="game-info col-xs-12 col-md-8 col-lg-9">
-                <div className="info-header">
-                  <div className="d-flex">
-                    <h2 className="game-title">{boardgameInfo.title}</h2>
+              </Grid>
+              <Grid item xs={12} md={7}>
+                <Box>
+                  <Box sx={{ display: "flex" }}>
+                    <Typography variant="h6">{boardgameInfo.title}</Typography>
                     <p className="game-year">({boardgameInfo.year})</p>
-                  </div>
-                  <p className="game-thesis">
-                    Build networks, grow industries, and navigate the world of
-                    the Industrial Revolution
-                  </p>
-                </div>
-                <p className="game-description">
+                  </Box>
+                </Box>
+                <Typography my={4}>
                   {clearText(boardgameInfo.description)}
-                </p>
+                </Typography>
                 <BGInfoPanel
                   minPlayers={boardgameInfo.minPlayers}
                   maxPlayers={boardgameInfo.maxPlayers}
@@ -63,14 +67,14 @@ const SingleGame: React.FC = () => {
                   alternativeNames={boardgameInfo.alternativeNames}
                   links={boardgameInfo.links}
                 />
-              </div>
-            </div>
+              </Grid>
+            </Grid>
 
             <BasicTabs />
-          </div>
+          </Box>
         </>
       )}
-    </main>
+    </Box>
   );
 };
 

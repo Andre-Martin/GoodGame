@@ -1,34 +1,70 @@
+import { useState } from "react";
 import { useAppSelector } from "../features/hooks/redux.hooks";
+
+import { Grid, Box, Typography } from "@mui/material";
+
+import TextNotFound from "../reusableComponents/TextNotFound";
+import ListItemFlex from "../reusableComponents/ListItemFlex";
+
 import { getYoutubeImgByVideoID } from "../utils/common";
-import { Grid } from "@mui/material";
+import ButtonLoad from "../reusableComponents/ButtonLoad";
 
 const VideoTab = () => {
   const { videos } = useAppSelector((state) => state.boardgame.boardgameInfo);
+
+  const [currentVideos, setCurrentVideos] = useState<number>(6);
+  const loadCVideos = () => {
+    setCurrentVideos((currentVideos) => (currentVideos += 6));
+  };
+
   return (
-    <Grid container spacing={3}>
-      {videos.length === 0 ? (
-        <Grid item xs={12}>
-          <p className=" text-center text-info p-5">
-            There's not videos for this BoardGame
-          </p>
-        </Grid>
-      ) : (
-        videos.map((item) => (
+    <>
+      <TextNotFound
+        content="There is not videos for this boardgame"
+        array={videos}
+      />
+
+      <Grid container spacing={3}>
+        {videos.slice(0, currentVideos).map((item) => (
           <Grid item xs={6} md={4} key={item.link}>
-            <a href={item.link} target="_blank">
-              <img src={getYoutubeImgByVideoID(item.link)} width="100%" />
-              <span className="text-info">{item.title}</span>
-            </a>
-            <div>
-              <span className="bg-secondary">{item.category}</span>
-              <span>{item.author}</span>
-              <span>{item.date}</span>
-              <span>{item.language}</span>
-            </div>
+            <Box component="a" href={item.link} target="_blank">
+              <Box
+                component="img"
+                src={getYoutubeImgByVideoID(item.link)}
+                width="100%"
+              />
+              <Typography sx={{ px: 1, textAlign: "center" }}>
+                {item.title}
+              </Typography>
+            </Box>
+            <Box>
+              <ListItemFlex>
+                <Typography>Category: </Typography>
+                <Typography>{item.category}</Typography>
+              </ListItemFlex>
+              <ListItemFlex>
+                <Typography>Author: </Typography>
+                <Typography>{item.author}</Typography>
+              </ListItemFlex>
+              <ListItemFlex>
+                <Typography>Date: </Typography>
+                <Typography> {item.date}</Typography>
+              </ListItemFlex>
+              <ListItemFlex>
+                <Typography>Language: </Typography>
+                <Typography>{item.language}</Typography>
+              </ListItemFlex>
+            </Box>
           </Grid>
-        ))
-      )}
-    </Grid>
+        ))}
+      </Grid>
+
+      <ButtonLoad
+        total={videos.length}
+        current={currentVideos}
+        onClick={loadCVideos}
+      />
+    </>
   );
 };
 

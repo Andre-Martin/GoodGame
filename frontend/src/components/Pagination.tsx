@@ -1,8 +1,8 @@
 import { useSearchParams, Link } from "react-router-dom";
 
-import { ITEMS_PER_PAGE } from "../utils/constants";
-
 import { Pagination as PaginationMUI, PaginationItem } from "@mui/material";
+
+import { ITEMS_PER_PAGE } from "../utils/constants";
 
 type Props = {
   amountOfItems: number;
@@ -11,7 +11,6 @@ type Props = {
 
 const Pagination = ({ amountOfItems, route }: Props) => {
   const [searchParams] = useSearchParams();
-  const name = searchParams.get("name");
   const page = parseInt(searchParams.get("page") || "1");
 
   return (
