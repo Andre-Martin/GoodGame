@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useAppSelector } from "../features/hooks/redux.hooks";
+import { useAppSelector } from "../../../../features/hooks/redux.hooks";
 
 import { uid } from "uid";
 
 import { List, ListItem } from "@mui/material";
 
-import ButtonLoad from "../reusableComponents/ButtonLoad";
-import TextNotFound from "../reusableComponents/TextNotFound";
+import ButtonLoad from "../../../ButtonLoad";
+import TextNotFound from "../../../TextNotFound";
 
 const MarketplaceTab = () => {
   const { marketplace, title } = useAppSelector(

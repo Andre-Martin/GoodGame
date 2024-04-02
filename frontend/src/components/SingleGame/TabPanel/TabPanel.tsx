@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Grid, Tab, Tabs } from "@mui/material";
 
-import CommentTab from "./CommentTab";
-import VideoTab from "./VideoTab";
-import StatTab from "./StatTab";
-import MarketplaceTab from "./MarketplaceTab";
+import CommentTab from "./CommentTab/CommentTab";
+import VideoTab from "./VideoTab/VideoTab";
+import StatTab from "./StatTab/StatTab";
+import MarketplaceTab from "./MPTab/MarketplaceTab";
 
 interface TabPanelProps {
   children: React.ReactNode;
@@ -12,13 +12,12 @@ interface TabPanelProps {
   value: number;
 }
 
-function TabPanel(props: TabPanelProps) {
+function TabContent(props: TabPanelProps) {
   const { children, value, index } = props;
-
   return <div hidden={value !== index}>{value === index && children}</div>;
 }
 
-export default function VerticalTabs() {
+export default function TabPanel() {
   const [value, setValue] = useState<number>(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -42,18 +41,18 @@ export default function VerticalTabs() {
         </Tabs>
       </Grid>
       <Grid item xs={12} mt={2}>
-        <TabPanel value={value} index={0}>
+        <TabContent value={value} index={0}>
           <CommentTab />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
+        </TabContent>
+        <TabContent value={value} index={1}>
           <VideoTab />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
+        </TabContent>
+        <TabContent value={value} index={2}>
           <StatTab />
-        </TabPanel>
-        <TabPanel value={value} index={3}>
+        </TabContent>
+        <TabContent value={value} index={3}>
           <MarketplaceTab />
-        </TabPanel>
+        </TabContent>
       </Grid>
     </Grid>
   );

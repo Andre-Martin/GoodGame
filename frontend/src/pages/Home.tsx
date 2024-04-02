@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Box, Grid, Typography } from "@mui/material";
 
+import { Box, Button, Grid, Typography, TextField } from "@mui/material";
+
+import { HomeImage } from "../components/Home";
 import ROUTES from "../utils/ROUTES";
 
 interface KeyboardEvent {
@@ -29,9 +31,7 @@ const Home = () => {
   return (
     <>
       <Box component="main">
-        <div className="main-img">
-          <Typography>Good Game</Typography>
-        </div>
+        <HomeImage />
 
         <Grid container>
           <Grid
@@ -41,33 +41,47 @@ const Home = () => {
             lg={5}
             sx={{ mx: "auto", p: 5, borderRadius: 4, boxShadow: 4 }}
           >
-            <div className="input-group mb-3">
-              <input
-                onChange={handleSearchInput}
-                onKeyDown={handleKeyDown}
-                type="text"
-                className="form-control"
-                placeholder="Quick Search"
-                value={name}
-              />
-              <button
-                className="btn btn-outline-secondary"
-                type="button"
-                id="button-addon2"
-                onClick={handleSubmit}
-              >
-                Enter
-              </button>
-            </div>
+            <Grid container sx={{ my: 3 }}>
+              <Grid item xs={10}>
+                <TextField
+                  label="Quick Search"
+                  variant="filled"
+                  size="small"
+                  sx={{ width: "100%" }}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    handleSearchInput(e)
+                  }
+                  onKeyDown={handleKeyDown}
+                  value={name}
+                />
+              </Grid>
+              <Grid item xs={2}>
+                <Button
+                  color="secondary"
+                  variant="contained"
+                  onClick={handleSubmit}
+                >
+                  Enter
+                </Button>
+              </Grid>
+            </Grid>
 
-            <button className="btn btn-outline-secondary w-100">
+            <Button
+              color="secondary"
+              variant="contained"
+              sx={{ width: "100%" }}
+            >
               Advanced Search
-            </button>
-            <button className="btn btn-outline-secondary w-100">
-              <Link className="text-decoration-none" to={ROUTES.chat}>
-                ASK GG
+            </Button>
+            <Button
+              color="secondary"
+              variant="contained"
+              sx={{ width: "100%", my: 1 }}
+            >
+              <Link to={ROUTES.chat} style={{ textDecoration: "none" }}>
+                <Typography color="white">ASK GG</Typography>
               </Link>
-            </button>
+            </Button>
           </Grid>
         </Grid>
       </Box>

@@ -1,8 +1,8 @@
-import { useAppSelector } from "../features/hooks/redux.hooks";
+import { useAppSelector } from "../../../../features/hooks/redux.hooks";
 
 import { Grid, Box, List, Typography } from "@mui/material";
 
-import ListItemFlex from "../reusableComponents/ListItemFlex";
+import ListItemFlex from "../../../ListItemFlex";
 
 const StatTab = () => {
   const { boardgameInfo } = useAppSelector((state) => state.boardgame);

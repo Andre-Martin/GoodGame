@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 
-import ErrorMessage from "../reusableComponents/ErrorMessage";
+import ErrorMessage from "../components/ErrorMessage";
 import ROUTES from "../utils/ROUTES";
 
 type Props = {

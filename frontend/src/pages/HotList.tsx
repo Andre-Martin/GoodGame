@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
 
-import Top50ListItem from "../components/Top50ListItem";
-import Spinner from "../reusableComponents/Spinner";
+import Top50ListItem from "../components/HotBGList/HotListItem";
+import Spinner from "../components/Spinner";
 
 import { fetchBoardgames } from "../features/slices/boardgameListSlice";
 import { Top50Info } from "../utils/types";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 const HotBGList: React.FC = () => {
   const { boardgamesLoadingStatus, boardgamesList } = useAppSelector(
@@ -18,7 +18,7 @@ const HotBGList: React.FC = () => {
   }, []);
 
   return (
-    <main className="shadow-lg p-4 mt-3 rounded">
+    <Box sx={{ boxShadow: 4, borderRadius: 4, p: 4, mt: 3 }}>
       {boardgamesLoadingStatus === "pending" && <Spinner />}
       {boardgamesLoadingStatus === "succeeded" && (
         <Grid container spacing={5}>
@@ -27,7 +27,7 @@ const HotBGList: React.FC = () => {
           ))}
         </Grid>
       )}
-    </main>
+    </Box>
   );
 };
 

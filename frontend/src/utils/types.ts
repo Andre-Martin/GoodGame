@@ -115,6 +115,12 @@ type XMLJsonComment = {
   };
 };
 
+export type XMLJson_AttributesValue = {
+  _attributes: {
+    value: string;
+  };
+};
+
 export type XMLJsonName = {
   _attributes: {
     type: "primary" | "alternative";
@@ -153,68 +159,18 @@ export type XMLJsonLink = {
 
 export type XMLJsonStats = {
   ratings: {
-    usersrated: {
-      _attributes: {
-        value: string;
-      };
-    };
-    owned: {
-      _attributes: {
-        value: string;
-      };
-    };
-    wishing: {
-      _attributes: {
-        value: string;
-      };
-    };
-
-    wanting: {
-      _attributes: {
-        value: string;
-      };
-    };
-
-    average: {
-      _attributes: {
-        value: string;
-      };
-    };
-    averageweight: {
-      _attributes: {
-        value: string;
-      };
-    };
-    bayesaverage: {
-      _attributes: {
-        value: string;
-      };
-    };
-    median: {
-      _attributes: {
-        value: string;
-      };
-    };
-    numcomments: {
-      _attributes: {
-        value: string;
-      };
-    };
-    stddev: {
-      _attributes: {
-        value: string;
-      };
-    };
-    trading: {
-      _attributes: {
-        value: string;
-      };
-    };
-    numweights: {
-      _attributes: {
-        value: string;
-      };
-    };
+    usersrated: XMLJson_AttributesValue;
+    owned: XMLJson_AttributesValue;
+    wishing: XMLJson_AttributesValue;
+    wanting: XMLJson_AttributesValue;
+    average: XMLJson_AttributesValue;
+    averageweight: XMLJson_AttributesValue;
+    bayesaverage: XMLJson_AttributesValue;
+    median: XMLJson_AttributesValue;
+    numcomments: XMLJson_AttributesValue;
+    stddev: XMLJson_AttributesValue;
+    trading: XMLJson_AttributesValue;
+    numweights: XMLJson_AttributesValue;
     ranks: {
       rank: XMLJsonRank[] | XMLJsonRank;
     };
@@ -240,11 +196,7 @@ export type XMLJsonMPItem = {
       title: string;
     };
   };
-  listdate: {
-    _attributes: {
-      value: string;
-    };
-  };
+  listdate: XMLJson_AttributesValue;
   price: {
     _attributes: {
       currency: string;
@@ -257,11 +209,7 @@ export type XMLJsonThingResponse = {
   items: {
     item: {
       name: XMLJsonName[] | XMLJsonName;
-      yearpublished: {
-        _attributes: {
-          value: string;
-        };
-      };
+      yearpublished: XMLJson_AttributesValue;
       _attributes: {
         id: string;
         type: string;
@@ -289,37 +237,12 @@ export type XMLJsonThingResponse = {
       marketplacelistings?: {
         listing: XMLJsonMPItem[] | XMLJsonMPItem;
       };
-      minage: {
-        _attributes: {
-          value: string;
-        };
-      };
-      maxplaytime: {
-        _attributes: {
-          value: string;
-        };
-      };
-      minplaytime: {
-        _attributes: {
-          value: string;
-        };
-      };
-      maxplayers: {
-        _attributes: {
-          value: string;
-        };
-      };
-      minplayers: {
-        _attributes: {
-          value: string;
-        };
-      };
-
-      playingtime: {
-        _attributes: {
-          value: string;
-        };
-      };
+      minage: XMLJson_AttributesValue;
+      maxplaytime: XMLJson_AttributesValue;
+      minplaytime: XMLJson_AttributesValue;
+      maxplayers: XMLJson_AttributesValue;
+      minplayers: XMLJson_AttributesValue;
+      playingtime: XMLJson_AttributesValue;
     };
   };
 };
@@ -329,21 +252,9 @@ type XMLJsonTop50Item = {
     id: string;
     rank: string;
   };
-  name: {
-    _attributes: {
-      value: string;
-    };
-  };
-  thumbnail: {
-    _attributes: {
-      value: string;
-    };
-  };
-  yearpublished?: {
-    _attributes: {
-      value: string;
-    };
-  };
+  name: XMLJson_AttributesValue;
+  thumbnail: XMLJson_AttributesValue;
+  yearpublished?: XMLJson_AttributesValue;
 };
 
 export type XMLJsonTop50Response = {

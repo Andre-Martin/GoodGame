@@ -1,19 +1,18 @@
 import { Grid, Paper, Avatar, Typography } from "@mui/material";
 
-import userIcon from "../img/usericon.png";
-
-import type { SingleGameComment } from "../utils/types";
+import userIcon from "../../../../img/usericon.png";
+import type { SingleGameComment } from "../../../../utils/types";
 
 const CommentBox = ({ rating, value, username }: SingleGameComment) => {
   let ratingColor: string;
   if (rating == "N/A") {
-    ratingColor = "bg-secondary";
+    ratingColor = "primary.main";
   } else if (+rating > 7) {
-    ratingColor = "bg-success";
+    ratingColor = "success.main";
   } else if (+rating > 5) {
-    ratingColor = "bg-warning";
+    ratingColor = "warning.main";
   } else {
-    ratingColor = "bg-danger";
+    ratingColor = "error.main";
   }
 
   return (
@@ -31,7 +30,17 @@ const CommentBox = ({ rating, value, username }: SingleGameComment) => {
           <Typography>{value}</Typography>
         </Grid>
         <Grid item xs={2} justifyContent="center">
-          <span className={`${ratingColor} p-3 rounded`}>{rating}</span>
+          <Typography
+            variant="caption"
+            sx={{
+              p: 3,
+              bgcolor: ratingColor,
+              borderRadius: 10,
+              fontWeight: "bold",
+            }}
+          >
+            {rating}
+          </Typography>
         </Grid>
       </Grid>
     </Paper>

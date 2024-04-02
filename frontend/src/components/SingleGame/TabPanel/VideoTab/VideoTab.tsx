@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { useAppSelector } from "../features/hooks/redux.hooks";
+import { useAppSelector } from "../../../../features/hooks/redux.hooks";
 
 import { Grid, Box, Typography } from "@mui/material";
 
-import TextNotFound from "../reusableComponents/TextNotFound";
-import ListItemFlex from "../reusableComponents/ListItemFlex";
+import TextNotFound from "../../../TextNotFound";
+import ListItemFlex from "../../../ListItemFlex";
 
-import { getYoutubeImgByVideoID } from "../utils/common";
-import ButtonLoad from "../reusableComponents/ButtonLoad";
+import { getYoutubeImgByVideoID } from "../../../../utils/common";
+import ButtonLoad from "../../../ButtonLoad";
 
 const VideoTab = () => {
   const { videos } = useAppSelector((state) => state.boardgame.boardgameInfo);

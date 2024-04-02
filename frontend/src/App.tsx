@@ -3,14 +3,13 @@ import { Routes, Route } from "react-router";
 
 import { Container } from "@mui/material";
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Spinner from "./reusableComponents/Spinner";
+import { Header, Footer } from "./components/App";
+import Spinner from "./components/Spinner";
 
 import ROUTES from "./utils/ROUTES";
 
 const Home = lazy(() => import("./pages/Home"));
-const HotBGList = lazy(() => import("./pages/HotBGList"));
+const HotBGList = lazy(() => import("./pages/HotList"));
 const SearchBGList = lazy(() => import("./pages/SearchBGList"));
 const Chat = lazy(() => import("./pages/Chat"));
 const SingleGame = lazy(() => import("./pages/SingleGame"));
@@ -20,7 +19,9 @@ function App() {
   return (
     <>
       <Suspense fallback={<Spinner />}>
-        <Container>
+        <Container
+          sx={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+        >
           <Header />
           <Routes>
             <Route path={ROUTES.home} element={<Home />} />

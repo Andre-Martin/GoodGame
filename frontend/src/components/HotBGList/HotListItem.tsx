@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 
-import ROUTES from "../utils/ROUTES";
-import type { Top50Info } from "../utils/types";
 import { Card, CardContent, CardMedia, Grid } from "@mui/material";
 
-const Top50ListItem = ({ rank, title, year, id, thumbnail }: Top50Info) => {
+import ROUTES from "../../utils/ROUTES";
+import type { Top50Info } from "../../utils/types";
+
+const HotListItem = ({ rank, title, year, id, thumbnail }: Top50Info) => {
   return (
-    <Grid item xs={6} md={4} lg={3} xl={2}>
+    <Grid item xs={6} md={4} lg={3}>
       <Link to={`${ROUTES.boardGameItem}${id}`}>
         <Card>
           <CardMedia
@@ -24,4 +25,4 @@ const Top50ListItem = ({ rank, title, year, id, thumbnail }: Top50Info) => {
   );
 };
 
-export default Top50ListItem;
+export default HotListItem;

@@ -4,10 +4,9 @@ import { useParams } from "react-router-dom";
 
 import { Box, Grid, Typography } from "@mui/material";
 
-import BGInfoPanel from "../components/InfoPanel";
-import BGCredPanel from "../components/CredPanel";
-import BasicTabs from "../components/TabPanel";
-import Spinner from "../reusableComponents/Spinner";
+import { TabPanel, CredPanel, InfoPanel } from "../components/SingleGame";
+
+import Spinner from "../components/Spinner";
 
 import { fetchBoardgame } from "../features/slices/boardgameSlice";
 
@@ -54,7 +53,7 @@ const SingleGame: React.FC = () => {
                 <Typography my={4}>
                   {clearText(boardgameInfo.description)}
                 </Typography>
-                <BGInfoPanel
+                <InfoPanel
                   minPlayers={boardgameInfo.minPlayers}
                   maxPlayers={boardgameInfo.maxPlayers}
                   minAge={boardgameInfo.minAge}
@@ -63,14 +62,14 @@ const SingleGame: React.FC = () => {
                   complexity={boardgameInfo.statistics.complexity}
                 />
 
-                <BGCredPanel
+                <CredPanel
                   alternativeNames={boardgameInfo.alternativeNames}
                   links={boardgameInfo.links}
                 />
               </Grid>
             </Grid>
 
-            <BasicTabs />
+            <TabPanel />
           </Box>
         </>
       )}

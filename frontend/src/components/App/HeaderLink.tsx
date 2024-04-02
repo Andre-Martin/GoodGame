@@ -14,6 +14,7 @@ const HeaderLink = ({ title, route, styles }: Props) => {
         sx={{
           m: 2,
           color: "white",
+          textAlign: "center",
           ...styles,
         }}
       >

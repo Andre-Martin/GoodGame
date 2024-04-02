@@ -10,7 +10,7 @@ interface Props {
   complexity: string;
 }
 
-const BGInfoPanel = ({
+const InfoPanel = ({
   minPlayers,
   maxPlayers,
   minPlaytime,
@@ -47,4 +47,4 @@ const BGInfoPanel = ({
   );
 };
 
-export default BGInfoPanel;
+export default InfoPanel;

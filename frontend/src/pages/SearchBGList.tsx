@@ -4,9 +4,9 @@ import { useSearchParams } from "react-router-dom";
 
 import { Box } from "@mui/material";
 
-import SearchListItem from "../components/SearchListItem";
+import SearchListItem from "../components/SearchBGList/SearchListItem";
 import Pagination from "../components/Pagination";
-import Spinner from "../reusableComponents/Spinner";
+import Spinner from "../components/Spinner";
 import Page404 from "./Page404";
 
 import {

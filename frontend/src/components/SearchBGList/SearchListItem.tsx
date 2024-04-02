@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { Grid, Box, Typography } from "@mui/material";
 
-import ROUTES from "../../src/utils/ROUTES";
-import { clearText } from "../../src/utils/common";
-import { IMAGE_NOT_FOUND } from "../utils/constants";
+import ROUTES from "../../utils/ROUTES";
+import { clearText } from "../../utils/common";
+import { IMAGE_NOT_FOUND } from "../../utils/constants";
 
-import type { ThingInfo } from "../../src/utils/types";
+import type { ThingInfo } from "../../utils/types";
 
 interface Props extends ThingInfo {
   number: number;

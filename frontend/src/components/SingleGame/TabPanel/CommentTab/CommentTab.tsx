@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useAppSelector } from "../features/hooks/redux.hooks";
+import { useAppSelector } from "../../../../features/hooks/redux.hooks";
 import { uid } from "uid";
 
 import CommentBox from "./CommentBox";
-import ButtonLoad from "../reusableComponents/ButtonLoad";
-import TextNotFound from "../reusableComponents/TextNotFound";
+import ButtonLoad from "../../../ButtonLoad";
+import TextNotFound from "../../../TextNotFound";
 
-import type { SingleGameComment } from "../utils/types";
+import type { SingleGameComment } from "../../../../utils/types";
 
 const CommentTab = () => {
   const { comments } = useAppSelector((state) => state.boardgame.boardgameInfo);

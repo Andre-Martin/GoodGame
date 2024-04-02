@@ -1,4 +1,5 @@
-import * as React from "react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   AppBar,
   Box,
@@ -10,18 +11,22 @@ import {
   MenuItem,
   InputBase,
 } from "@mui/material";
-import { styled, alpha } from "@mui/material/styles";
 
 import ExtensionIcon from "@mui/icons-material/Extension";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 
-import ROUTES from "../utils/ROUTES";
-import { Link } from "react-router-dom";
+import { styled, alpha } from "@mui/material/styles";
 
-import HeaderLink from "../reusableComponents/HeaderLink";
+import HeaderLink from "./HeaderLink";
 
-const pages = ["Home", "CHAT GG", "BoardGame List"];
+import ROUTES from "../../utils/ROUTES";
+
+const pages = [
+  { route: ROUTES.home, value: "Home" },
+  { route: ROUTES.boardGameList, value: "HOT BoardGames" },
+  { route: ROUTES.chat, value: "ASK GG" },
+];
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -64,10 +69,35 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
+interface KeyboardEvent {
+  key: string;
+  preventDefault: () => void;
+}
+
+interface SubmitEvent {
+  preventDefault: () => void;
+}
+
+const Header = () => {
+  const [name, setName] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearchInput = (e: React.FormEvent<HTMLInputElement>) => {
+    setName(e.currentTarget.value);
+  };
+
+  const handleSubmit = (e: SubmitEvent) => {
+    e.preventDefault();
+    if (!name.trim()) return;
+
+    navigate(`${ROUTES.search}?name=${name}&page=1`, { replace: true });
+  };
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === "Enter") handleSubmit(e);
+  };
+
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -78,9 +108,9 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#333333" }}>
+    <AppBar position="static" sx={{ backgroundColor: "primary.main" }}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar>
           <ExtensionIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
@@ -123,8 +153,8 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.value} onClick={handleCloseNavMenu}>
+                  <Link to={page.route}>{page.value}</Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -150,15 +180,22 @@ function ResponsiveAppBar() {
             <HeaderLink route={ROUTES.boardGameList} title="Hot BoardGames" />
             <HeaderLink route={ROUTES.chat} title="ASK GG" />
           </Box>
-          <Search>
+          <Search sx={{ display: { xs: "none", md: "block" } }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
-            <StyledInputBase placeholder="Search..." />
+            <StyledInputBase
+              placeholder="Search..."
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleSearchInput(e)
+              }
+              onKeyDown={handleKeyDown}
+              value={name}
+            />
           </Search>
         </Toolbar>
       </Container>
     </AppBar>
   );
-}
-export default ResponsiveAppBar;
+};
+export default Header;

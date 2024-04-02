@@ -10,7 +10,7 @@ interface Props {
   };
 }
 
-const BGCredPanel = ({
+const CredPanel = ({
   alternativeNames,
   links: { publishers, artists, designers },
 }: Props) => {
@@ -24,4 +24,4 @@ const BGCredPanel = ({
   );
 };
 
-export default BGCredPanel;
+export default CredPanel;

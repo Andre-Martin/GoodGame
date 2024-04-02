@@ -8,47 +8,6 @@
   list-style: none;
 }
 
-.main-img {
-  position: relative;
-  background: url("../img/img.png");
-  background-size: cover;
-  background-position: center center;
-
-  margin: 10px 0;
-  width: 100%;
-  height: 300px;
-}
-
-.main-img p {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  font-size: 5rem;
-  color: white;
-}
-
-/* games-list */
-
-.description-header__title a {
-  color: blue;
-  font-size: 1.5em;
-  margin-right: 0.3rem;
-}
-.description-header__year {
-  color: gray;
-  font-size: 1.3em;
-}
-
-/* game-info */
-.game-img {
-  display: block;
-  margin: 0 auto;
-  max-width: 100%;
-  height: 200px;
-}
-
 /* chat */
 .main-chat section {
   max-height: 90vh;
