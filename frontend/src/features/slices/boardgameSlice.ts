@@ -1,37 +1,62 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getBoardgameById } from "../../utils/boardgameAPI";
 import type { SingleGameInfo } from "../../utils/types";
 
-interface initialState {
-  boardgameInfo: SingleGameInfo;
-  boardgameLoadingStatus: "idle" | "pending" | "succeed" | "failed";
-}
-
-const initialGameInfo: SingleGameInfo = {
+const initialBoardgameInfo: SingleGameInfo = {
   id: "",
   type: "",
   title: "",
   description: "",
   thumbnail: "",
-  year: "",
   image: "",
+  year: "",
+  alternativeNames: [],
+  statistics: {
+    averageRating: "",
+    complexity: "",
+    buyersAverage: "",
+    median: "",
+    totalComments: "",
+    complexityRated: "",
+    owned: "",
+    stddev: "",
+    trading: "",
+    usersRated: "",
+    wishing: "",
+    wanting: "",
+    ranks: [],
+  },
+  comments: [],
+  links: {
+    categories: [],
+    designers: [],
+    artists: [],
+    publishers: [],
+    mechanics: [],
+    families: [],
+    accessories: [],
+    implementations: [],
+    expansions: [],
+    compilations: [],
+  },
+  videos: [],
+  marketplace: [],
   minAge: "",
   playtime: "",
   maxPlaytime: "",
   minPlaytime: "",
   maxPlayers: "",
   minPlayers: "",
-  statistics: {
-    averageRating: "",
-    ranks: [],
-    userRated: "",
-  },
-  comments: [],
 };
+
+interface initialState {
+  boardgameInfo: SingleGameInfo;
+  boardgameLoadingStatus: "idle" | "pending" | "succeed" | "failed";
+}
 
 const initialState: initialState = {
   boardgameLoadingStatus: "idle",
-  boardgameInfo: initialGameInfo,
+  boardgameInfo: initialBoardgameInfo,
 };
 
 export const fetchBoardgame = createAsyncThunk(

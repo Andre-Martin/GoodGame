@@ -1,4 +1,4 @@
-export type Top50Info = {
+export type HotItemInfo = {
   id: string;
   title: string;
   rank: string;
@@ -79,6 +79,8 @@ export type SingleGameMPItem = {
     title: string;
   };
   date: string;
+  notes: string;
+  condition: string;
   price: {
     currency: string;
     value: string;
@@ -203,11 +205,13 @@ export type XMLJsonMPItem = {
       value: string;
     };
   };
+  notes: XMLJson_AttributesValue;
+  condition: XMLJson_AttributesValue;
 };
 
 export type XMLJsonThingResponse = {
   items: {
-    item: {
+    item?: {
       name: XMLJsonName[] | XMLJsonName;
       yearpublished: XMLJson_AttributesValue;
       _attributes: {

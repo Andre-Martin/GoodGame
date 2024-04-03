@@ -1,12 +1,21 @@
 import { useState } from "react";
 import { useAppSelector } from "../../../../features/hooks/redux.hooks";
 
-import { uid } from "uid";
-
-import { List, ListItem } from "@mui/material";
+import {
+  Box,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  Typography,
+  TableBody,
+} from "@mui/material";
+import MarketPlaceTabItem from "./MarketPlaceTabItem";
 
 import ButtonLoad from "../../../ButtonLoad";
 import TextNotFound from "../../../TextNotFound";
+
+import type { SingleGameMPItem } from "../../../../utils/types";
 
 const MarketplaceTab = () => {
   const { marketplace, title } = useAppSelector(
@@ -25,27 +34,38 @@ const MarketplaceTab = () => {
         content="There is no one selling this boardgame at this time"
         array={marketplace}
       />
-      {
-        <List>
-          {marketplace.slice(0, currentItems).map((item) => (
-            <ListItem
-              key={uid()}
-              sx={{ display: "flex", justifyContent: "space-around" }}
-            >
-              <span className="p-4">
-                {`${item.price.currency} ${item.price.value}`}
-              </span>
-              <a href={item.link.href}>{title}</a>
-              <span>{item.date}</span>
-            </ListItem>
-          ))}
-          <ButtonLoad
-            total={marketplace.length}
-            current={currentItems}
-            onClick={loadItems}
-          />
-        </List>
-      }
+      {marketplace.length > 0 && (
+        <Table sx={{ p: 4 }}>
+          <TableHead>
+            <TableRow>
+              <TableCell>
+                <Typography fontWeight="bold">Title</Typography>
+              </TableCell>
+              <TableCell align="right">
+                <Typography fontWeight="bold">Condition</Typography>
+              </TableCell>
+              <TableCell align="right">
+                <Typography fontWeight="bold"> Price</Typography>
+              </TableCell>
+              <TableCell align="right">
+                <Typography fontWeight="bold">Published</Typography>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {marketplace
+              .slice(0, currentItems)
+              .map((item: SingleGameMPItem) => (
+                <MarketPlaceTabItem {...item} title={title} key={item.date} />
+              ))}
+          </TableBody>
+        </Table>
+      )}
+      <ButtonLoad
+        total={marketplace.length}
+        current={currentItems}
+        onClick={loadItems}
+      />
     </>
   );
 };

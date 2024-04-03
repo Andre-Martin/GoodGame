@@ -11,70 +11,96 @@ const StatTab = () => {
       <Grid item xs={12} md={6}>
         <Box sx={{ m: 4 }}>
           <List>
-            <Typography variant="h6" textAlign="center">
+            <Typography variant="h5" textAlign="center">
               Game Stats
             </Typography>
             <ListItemFlex>
-              <span>Average Ratig</span>
-              <span>{boardgameInfo.statistics.averageRating}</span>
+              <Typography fontWeight="bold" color="info.main">
+                Average Ratig
+              </Typography>
+              <Typography>{boardgameInfo.statistics.averageRating}</Typography>
             </ListItemFlex>
             <ListItemFlex>
-              <span>No. of Ratings</span>
-              <span>{boardgameInfo.statistics.usersRated}</span>
+              <Typography fontWeight="bold" color="info.main">
+                No. of Ratings
+              </Typography>
+              <Typography>{boardgameInfo.statistics.usersRated}</Typography>
             </ListItemFlex>
             <ListItemFlex>
-              <span>Buyers Average</span>
-              <span>{boardgameInfo.statistics.buyersAverage}</span>
+              <Typography fontWeight="bold" color="info.main">
+                Buyers Average
+              </Typography>
+              <Typography>{boardgameInfo.statistics.buyersAverage}</Typography>
             </ListItemFlex>
             <ListItemFlex>
-              <span>Std. Deviation</span>
-              <span>{boardgameInfo.statistics.stddev}</span>
+              <Typography fontWeight="bold" color="info.main">
+                Std. Deviation
+              </Typography>
+              <Typography>{boardgameInfo.statistics.stddev}</Typography>
             </ListItemFlex>
             <ListItemFlex>
-              <span>Median</span>
-              <span>{boardgameInfo.statistics.median}</span>
+              <Typography fontWeight="bold" color="info.main">
+                Median
+              </Typography>
+              <Typography>{boardgameInfo.statistics.median}</Typography>
             </ListItemFlex>
             <ListItemFlex>
-              <span>Complexity</span>
-              <span>{boardgameInfo.statistics.complexity}</span>
+              <Typography fontWeight="bold" color="info.main">
+                Complexity
+              </Typography>
+              <Typography>{boardgameInfo.statistics.complexity}</Typography>
             </ListItemFlex>
             <ListItemFlex>
-              <span>Comments</span>
-              <span>{boardgameInfo.statistics.totalComments}</span>
+              <Typography fontWeight="bold" color="info.main">
+                Comments
+              </Typography>
+              <Typography>{boardgameInfo.statistics.totalComments}</Typography>
             </ListItemFlex>
           </List>
         </Box>
       </Grid>
       <Grid item xs={12} md={6}>
         <Box sx={{ m: 4 }}>
-          <Typography variant="h6" textAlign="center">
+          <Typography variant="h5" textAlign="center">
             Collection Stats
           </Typography>
           <List>
             <ListItemFlex>
-              <span>Own</span>
-              <span>{boardgameInfo.statistics.owned}</span>
+              <Typography fontWeight="bold" color="info.main">
+                Own
+              </Typography>
+              <Typography>{boardgameInfo.statistics.owned}</Typography>
             </ListItemFlex>
 
             <ListItemFlex>
-              <span>Want In Trade</span>
-              <span>{boardgameInfo.statistics.trading}</span>
+              <Typography fontWeight="bold" color="info.main">
+                Want In Trade
+              </Typography>
+              <Typography>{boardgameInfo.statistics.trading}</Typography>
             </ListItemFlex>
             <ListItemFlex>
-              <span>Wishlist</span>
-              <span>{boardgameInfo.statistics.wishing}</span>
+              <Typography fontWeight="bold" color="info.main">
+                Wishlist
+              </Typography>
+              <Typography>{boardgameInfo.statistics.wishing}</Typography>
             </ListItemFlex>
           </List>
         </Box>
         <Box sx={{ m: 4 }}>
-          <Typography variant="h6" textAlign="center">
+          <Typography variant="h5" textAlign="center">
             Game Ranks
           </Typography>
           <List>
             {boardgameInfo.statistics.ranks.map((item) => (
               <ListItemFlex key={item.id}>
-                <span>{item.fullName}</span>
-                <span>No {item.value}</span>
+                <Typography fontWeight="bold" color="info.main">
+                  {item.fullName}
+                </Typography>
+                <Typography className="hoverText">
+                  {item.value === "Not Ranked"
+                    ? item.value
+                    : `No: ${item.value}`}
+                </Typography>
               </ListItemFlex>
             ))}
           </List>

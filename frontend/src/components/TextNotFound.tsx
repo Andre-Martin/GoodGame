@@ -6,7 +6,7 @@ type Props = {
 };
 const TextNotFound = ({ content, array }: Props) => {
   return array.length === 0 ? (
-    <Typography sx={{ color: "blue", textAlign: "center", p: 5 }}>
+    <Typography sx={{ color: "info.main", textAlign: "center", p: 5 }}>
       {content}
     </Typography>
   ) : null;
