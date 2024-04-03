@@ -60,6 +60,7 @@ const Home = () => {
                   color="secondary"
                   variant="contained"
                   onClick={handleSubmit}
+                  sx={{ height: "100%" }}
                 >
                   Enter
                 </Button>

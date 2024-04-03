@@ -2,15 +2,18 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
 import { useParams } from "react-router-dom";
 
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
-import { TabPanel, CredPanel, InfoPanel } from "../components/SingleGame";
-
+import {
+  TabPanel,
+  CredPanel,
+  InfoPanel,
+  MainPanel,
+} from "../components/SingleGame";
+import Page404 from "./Page404";
 import Spinner from "../components/Spinner";
 
 import { fetchBoardgame } from "../features/slices/boardgameSlice";
-
-import { clearText } from "../utils/common";
 
 const SingleGame: React.FC = () => {
   const { id } = useParams();
@@ -26,7 +29,10 @@ const SingleGame: React.FC = () => {
   return (
     <Box component="main">
       {boardgameLoadingStatus === "pending" && <Spinner />}
-      {boardgameLoadingStatus === "succeed" && (
+      {boardgameLoadingStatus === "succeed" && boardgameInfo === null && (
+        <Page404 message="BoardGame with such ID is not found  " />
+      )}
+      {boardgameLoadingStatus === "succeed" && boardgameInfo !== null ? (
         <>
           <Box sx={{ boxShadow: 4, borderRadius: 4 }}>
             <Grid container sx={{ mt: 3, p: 5 }} spacing={3}>
@@ -44,35 +50,16 @@ const SingleGame: React.FC = () => {
                 />
               </Grid>
               <Grid item xs={12} md={7}>
-                <Box>
-                  <Box sx={{ display: "flex" }}>
-                    <Typography variant="h6">{boardgameInfo.title}</Typography>
-                    <p className="game-year">({boardgameInfo.year})</p>
-                  </Box>
-                </Box>
-                <Typography my={4}>
-                  {clearText(boardgameInfo.description)}
-                </Typography>
-                <InfoPanel
-                  minPlayers={boardgameInfo.minPlayers}
-                  maxPlayers={boardgameInfo.maxPlayers}
-                  minAge={boardgameInfo.minAge}
-                  minPlaytime={boardgameInfo.minPlaytime}
-                  maxPlaytime={boardgameInfo.maxPlaytime}
-                  complexity={boardgameInfo.statistics.complexity}
-                />
-
-                <CredPanel
-                  alternativeNames={boardgameInfo.alternativeNames}
-                  links={boardgameInfo.links}
-                />
+                <MainPanel />
+                <InfoPanel />
+                <CredPanel />
               </Grid>
             </Grid>
 
             <TabPanel />
           </Box>
         </>
-      )}
+      ) : null}
     </Box>
   );
 };

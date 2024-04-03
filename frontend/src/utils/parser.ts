@@ -4,7 +4,7 @@ import type {
   SearchInfo,
   ThingInfo,
   XMLJsonThingResponse,
-  Top50Info,
+  HotItemInfo,
   XMLJsonTop50Response,
   XMLJsonName,
   XMLJsonLink,
@@ -171,6 +171,16 @@ const isNA = (data: XMLJson_AttributesValue) => {
 };
 
 const parseXMLJsonCommonInfo = (data: XMLJsonThingResponse) => {
+  const result = {
+    year: "",
+    minPlaytime: "",
+    maxPlaytime: "",
+    playtime: "",
+    minAge: "",
+    minPlayers: "",
+    maxPlayers: "",
+  };
+  if (data.items.item === undefined) return result;
   const {
     yearpublished,
     minplaytime,
@@ -181,21 +191,23 @@ const parseXMLJsonCommonInfo = (data: XMLJsonThingResponse) => {
     playingtime,
   } = data.items.item;
 
-  const result = {
-    year: isNA(yearpublished),
-    minPlaytime: isNA(minplaytime),
-    maxPlaytime: isNA(maxplaytime),
-    playtime: isNA(playingtime),
-    minAge: isNA(minage),
-    minPlayers: isNA(minplayers),
-    maxPlayers: isNA(maxplayers),
-  };
+  result.year = isNA(yearpublished);
+  result.minPlaytime = isNA(minplaytime);
+  result.maxPlaytime = isNA(maxplaytime);
+  result.playtime = isNA(playingtime);
+  result.minAge = isNA(minage);
+  result.minPlayers = isNA(minplayers);
+  result.maxPlayers = isNA(maxplayers);
 
   return result;
 };
 
 const parseXMLJsonMedia = (data: XMLJsonThingResponse) => {
-  let image, thumbnail;
+  let image = "",
+    thumbnail = "";
+
+  if (data.items.item === undefined) return { image, thumbnail };
+
   if (data.items.item.image !== undefined) image = data.items.item.image._text;
   else image = IMAGE_NOT_FOUND;
   if (data.items.item.thumbnail !== undefined)
@@ -207,6 +219,8 @@ const parseXMLJsonMedia = (data: XMLJsonThingResponse) => {
 
 const parseXMLJsonComments = (data: XMLJsonThingResponse) => {
   let comments: SingleGameComment[] = [];
+  if (data.items.item === undefined) return comments;
+
   if (Array.isArray(data.items.item.comments?.comment)) {
     comments = data.items.item.comments.comment.map((item) => item._attributes);
   } else if (data.items.item.comments !== undefined) {
@@ -219,6 +233,9 @@ const parseXMLJsonComments = (data: XMLJsonThingResponse) => {
 
 const parseXMLJsonVideo = (data: XMLJsonThingResponse) => {
   const result: SingleGameVideo[] = [];
+
+  if (data.items.item === undefined) return result;
+
   if (Array.isArray(data.items.item.videos.video)) {
     data.items.item.videos.video.forEach((item) => {
       const { title, category, language, link, username, postdate, id } =
@@ -233,7 +250,7 @@ const parseXMLJsonVideo = (data: XMLJsonThingResponse) => {
         id,
       });
     });
-  } else if (data.items.item.videos.video !== undefined) {
+  } else if (data.items.item?.videos.video !== undefined) {
     const { title, category, language, link, username, postdate, id } =
       data.items.item.videos.video._attributes;
     const video: SingleGameVideo = {
@@ -252,10 +269,11 @@ const parseXMLJsonVideo = (data: XMLJsonThingResponse) => {
 
 const parseXMLJsonMarketplace = (data: XMLJsonThingResponse) => {
   const result: SingleGameMPItem[] = [];
+  if (data.items.item === undefined) return result;
 
-  if (Array.isArray(data.items.item.marketplacelistings?.listing)) {
+  if (Array.isArray(data.items.item?.marketplacelistings?.listing)) {
     data.items.item.marketplacelistings.listing.forEach((item) => {
-      const { link, listdate, price } = item;
+      const { link, listdate, price, condition, notes } = item;
       const mpItem: SingleGameMPItem = {
         link: {
           href: link._attributes.href,
@@ -266,11 +284,13 @@ const parseXMLJsonMarketplace = (data: XMLJsonThingResponse) => {
           currency: price._attributes.currency,
           value: price._attributes.value,
         },
+        notes: notes._attributes.value,
+        condition: condition._attributes.value,
       };
       result.push(mpItem);
     });
   } else if (data.items.item.marketplacelistings?.listing !== undefined) {
-    const { link, listdate, price } =
+    const { link, listdate, price, notes, condition } =
       data.items.item.marketplacelistings.listing;
     const mpItem: SingleGameMPItem = {
       link: {
@@ -278,6 +298,8 @@ const parseXMLJsonMarketplace = (data: XMLJsonThingResponse) => {
         title: link._attributes.title,
       },
       date: listdate._attributes.value,
+      notes: notes._attributes.value,
+      condition: condition._attributes.value,
       price: {
         currency: price._attributes.currency,
         value: price._attributes.value,
@@ -290,7 +312,8 @@ const parseXMLJsonMarketplace = (data: XMLJsonThingResponse) => {
 
 export const parseFromXMLJsonThing = (
   data: XMLJsonThingResponse
-): SingleGameInfo => {
+): SingleGameInfo | null => {
+  if (data.items.item === undefined) return null;
   const { id, type } = data.items.item._attributes;
   const { title, alternativeNames } = parseXMLJsonTitles(data.items.item.name);
   const {
@@ -367,8 +390,8 @@ export const parseFromBggThings = (
 
 export const parseFromXMLJsonTop50 = (
   data: XMLJsonTop50Response
-): Top50Info[] => {
-  const result: Top50Info[] = [];
+): HotItemInfo[] => {
+  const result: HotItemInfo[] = [];
 
   for (const item of data.items.item) {
     const { id, rank } = item._attributes,

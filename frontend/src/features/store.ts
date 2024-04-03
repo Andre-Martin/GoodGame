@@ -1,12 +1,12 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
-import boardgameListReducer from "./slices/boardgameListSlice";
+import hotListReducer from "./slices/hotListSlice";
 import boardgameReducer from "./slices/boardgameSlice";
 import chatReducer from "./slices/chatSlice";
 import searchReducer from "./slices/searchSlice";
 
 const rootReducer = combineReducers({
-  boardgameList: boardgameListReducer,
+  hotList: hotListReducer,
   boardgame: boardgameReducer,
   chat: chatReducer,
   search: searchReducer,

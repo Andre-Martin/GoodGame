@@ -1,28 +1,28 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
 
-import Top50ListItem from "../components/HotBGList/HotListItem";
+import Top50ListItem from "../components/HotList/HotListItem";
 import Spinner from "../components/Spinner";
 
-import { fetchBoardgames } from "../features/slices/boardgameListSlice";
-import { Top50Info } from "../utils/types";
+import { fetchHotList } from "../features/slices/hotListSlice";
+import { HotItemInfo } from "../utils/types";
 import { Box, Grid } from "@mui/material";
 
 const HotBGList: React.FC = () => {
-  const { boardgamesLoadingStatus, boardgamesList } = useAppSelector(
-    (state) => state.boardgameList
+  const { hotList, hotListLoadingStatus } = useAppSelector(
+    (state) => state.hotList
   );
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(fetchBoardgames());
+    dispatch(fetchHotList());
   }, []);
 
   return (
     <Box sx={{ boxShadow: 4, borderRadius: 4, p: 4, mt: 3 }}>
-      {boardgamesLoadingStatus === "pending" && <Spinner />}
-      {boardgamesLoadingStatus === "succeeded" && (
-        <Grid container spacing={5}>
-          {boardgamesList.map((item: Top50Info) => (
+      {hotListLoadingStatus === "pending" && <Spinner />}
+      {hotListLoadingStatus === "succeeded" && (
+        <Grid container spacing={5} justifyContent="center">
+          {hotList.map((item: HotItemInfo) => (
             <Top50ListItem key={item.id} {...item} />
           ))}
         </Grid>

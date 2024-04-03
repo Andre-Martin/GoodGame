@@ -27,13 +27,7 @@ export default function TabPanel() {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="secondary"
-          textColor="secondary"
-          centered
-        >
+        <Tabs value={value} onChange={handleChange} centered>
           <Tab label="Comments" />
           <Tab label="Videos" />
           <Tab label="Stats" />

@@ -9,6 +9,7 @@ const ListItemFlex = ({ children }: Props) => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        borderBottom: "1px solid black",
       }}
     >
       {children}

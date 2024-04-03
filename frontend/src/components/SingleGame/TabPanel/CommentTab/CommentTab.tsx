@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useAppSelector } from "../../../../features/hooks/redux.hooks";
 import { uid } from "uid";
 
-import CommentBox from "./CommentBox";
+import { Box } from "@mui/material";
+
+import CommentBox from "./CommentTabItem";
 import ButtonLoad from "../../../ButtonLoad";
 import TextNotFound from "../../../TextNotFound";
 
@@ -18,9 +20,11 @@ const CommentTab = () => {
   return (
     <>
       <TextNotFound content="There is no comments yet" array={comments} />
-      {comments.slice(0, currentComments).map((item: SingleGameComment) => (
-        <CommentBox {...item} key={uid()} />
-      ))}
+      <Box>
+        {comments.slice(0, currentComments).map((item: SingleGameComment) => (
+          <CommentBox {...item} key={uid()} />
+        ))}
+      </Box>
 
       <ButtonLoad
         total={comments.length}

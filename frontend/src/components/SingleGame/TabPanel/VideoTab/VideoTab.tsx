@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useAppSelector } from "../../../../features/hooks/redux.hooks";
 
-import { Grid, Box, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 
 import TextNotFound from "../../../TextNotFound";
-import ListItemFlex from "../../../ListItemFlex";
 
-import { getYoutubeImgByVideoID } from "../../../../utils/common";
 import ButtonLoad from "../../../ButtonLoad";
+import VideoTabItem from "./VideoTabItem";
 
 const VideoTab = () => {
   const { videos } = useAppSelector((state) => state.boardgame.boardgameInfo);
@@ -24,38 +23,9 @@ const VideoTab = () => {
         array={videos}
       />
 
-      <Grid container spacing={3}>
+      <Grid container spacing={3} justifyContent="center">
         {videos.slice(0, currentVideos).map((item) => (
-          <Grid item xs={6} md={4} key={item.link}>
-            <Box component="a" href={item.link} target="_blank">
-              <Box
-                component="img"
-                src={getYoutubeImgByVideoID(item.link)}
-                width="100%"
-              />
-              <Typography sx={{ px: 1, textAlign: "center" }}>
-                {item.title}
-              </Typography>
-            </Box>
-            <Box>
-              <ListItemFlex>
-                <Typography>Category: </Typography>
-                <Typography>{item.category}</Typography>
-              </ListItemFlex>
-              <ListItemFlex>
-                <Typography>Author: </Typography>
-                <Typography>{item.author}</Typography>
-              </ListItemFlex>
-              <ListItemFlex>
-                <Typography>Date: </Typography>
-                <Typography> {item.date}</Typography>
-              </ListItemFlex>
-              <ListItemFlex>
-                <Typography>Language: </Typography>
-                <Typography>{item.language}</Typography>
-              </ListItemFlex>
-            </Box>
-          </Grid>
+          <VideoTabItem key={item.id} {...item} />
         ))}
       </Grid>
 
