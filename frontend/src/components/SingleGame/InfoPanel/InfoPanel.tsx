@@ -1,23 +1,17 @@
 import { Grid } from "@mui/material";
 import InfoPanelItem from "./InfoPanelItem";
+import { useAppSelector } from "../../../features/hooks/redux.hooks";
 
-interface Props {
-  minPlayers: string;
-  maxPlayers: string;
-  minPlaytime: string;
-  maxPlaytime: string;
-  minAge: string;
-  complexity: string;
-}
+const InfoPanel = () => {
+  const {
+    minPlayers,
+    maxPlayers,
+    minPlaytime,
+    maxPlaytime,
+    minAge,
+    statistics: { complexity },
+  } = useAppSelector((state) => state.boardgame.boardgameInfo);
 
-const InfoPanel = ({
-  minPlayers,
-  maxPlayers,
-  minPlaytime,
-  maxPlaytime,
-  minAge,
-  complexity,
-}: Props) => {
   const formattedComplexity =
     complexity === "N/A"
       ? "N/A"

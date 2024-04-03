@@ -11,7 +11,7 @@ interface KeyboardEvent {
 }
 
 const Home = () => {
-  const [name, setName] = useState("");
+  const [name, setName] = useState<string>("");
   const navigate = useNavigate();
 
   const handleSearchInput = (e: React.FormEvent<HTMLInputElement>) => {
@@ -30,7 +30,7 @@ const Home = () => {
 
   return (
     <>
-      <Box component="main">
+      <Box component="main" sx={{ my: 3 }}>
         <HomeImage />
 
         <Grid container>
@@ -60,6 +60,7 @@ const Home = () => {
                   color="secondary"
                   variant="contained"
                   onClick={handleSubmit}
+                  sx={{ height: "100%" }}
                 >
                   Enter
                 </Button>

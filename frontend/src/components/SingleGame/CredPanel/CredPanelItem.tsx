@@ -12,14 +12,32 @@ const CredPanelItem = ({ title, arr }: Props) => {
   const showAllItems = () => {
     setCurrentItems(arr.length);
   };
+
   return (
-    <ListItem sx={{ display: "flex", alignItems: "start" }}>
-      <Typography color="green">{`${title}: `}</Typography>
+    <ListItem
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        alignItems: "start",
+        justifyContent: "start",
+      }}
+    >
+      <Typography color="info.main">{`${title}: `}</Typography>
       <Typography sx={{ fontWeight: "light" }}>
-        {arr.length !== 0 ? arr.slice(0, currentItems).join(", ") : " None"}
-        <span onClick={showAllItems}>
+        {arr.length === 0
+          ? " None"
+          : arr.slice(0, currentItems).map((item) => (
+              <span key={item} className="hoverText">
+                {item + ",  "}
+              </span>
+            ))}
+        <Typography
+          component="span"
+          onClick={showAllItems}
+          className="hoverText"
+        >
           {arr.length > currentItems ? ` +${arr.length - 3} more` : null}
-        </span>
+        </Typography>
       </Typography>
     </ListItem>
   );

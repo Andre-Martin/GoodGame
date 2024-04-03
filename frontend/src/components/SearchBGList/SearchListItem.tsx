@@ -40,12 +40,14 @@ const SearchListItem = ({
         </Link>
       </Grid>
       <Grid item xs={12} md={7} lg={9}>
-        <Box>
-          <Typography variant="h5">
-            <Link style={{ color: "blue" }} to={ROUTES.boardGameItem + id}>
+        <Box sx={{ display: "flex" }}>
+          <Link to={ROUTES.boardGameItem + id}>
+            <Typography color="info.main" variant="h5" className="hoverText">
               {title}
-            </Link>
-            <span>({year ? year : "N/A"})</span>
+            </Typography>
+          </Link>
+          <Typography component="sup" color="secondary.main">
+            ({year ? year : "N/A"})
           </Typography>
         </Box>
 

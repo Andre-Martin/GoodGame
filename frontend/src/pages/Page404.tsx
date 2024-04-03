@@ -14,7 +14,7 @@ const Page404 = ({ message }: Props) => {
       <ErrorMessage />
       <Typography textAlign="center">
         {message ? message : "The page doesn't exist."}
-        <Link className="text-info" to={ROUTES.home}>
+        <Link className="hoverText" to={ROUTES.home}>
           Back to Main Page
         </Link>
       </Typography>

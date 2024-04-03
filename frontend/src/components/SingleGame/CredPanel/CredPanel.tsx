@@ -1,25 +1,19 @@
 import { List } from "@mui/material";
 import CredPanelItem from "./CredPanelItem";
+import { useAppSelector } from "../../../features/hooks/redux.hooks";
 
-interface Props {
-  alternativeNames: string[];
-  links: {
-    designers: string[];
-    publishers: string[];
-    artists: string[];
-  };
-}
-
-const CredPanel = ({
-  alternativeNames,
-  links: { publishers, artists, designers },
-}: Props) => {
+const CredPanel = () => {
+  const { links, alternativeNames } = useAppSelector(
+    (state) => state.boardgame.boardgameInfo
+  );
   return (
     <List className="m-0 p-0">
+      <CredPanelItem title="Categories" arr={links.categories} />
+      <CredPanelItem title="Family" arr={links.families} />
       <CredPanelItem title="Alternative Names" arr={alternativeNames} />
-      <CredPanelItem title="Designers" arr={designers} />
-      <CredPanelItem title="Artists" arr={artists} />
-      <CredPanelItem title="Publisher" arr={publishers} />
+      <CredPanelItem title="Designers" arr={links.designers} />
+      <CredPanelItem title="Artists" arr={links.artists} />
+      <CredPanelItem title="Publisher" arr={links.publishers} />
     </List>
   );
 };

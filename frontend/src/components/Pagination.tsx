@@ -1,6 +1,10 @@
 import { useSearchParams, Link } from "react-router-dom";
 
-import { Pagination as PaginationMUI, PaginationItem } from "@mui/material";
+import {
+  Pagination as PaginationMUI,
+  PaginationItem,
+  Box,
+} from "@mui/material";
 
 import { ITEMS_PER_PAGE } from "../utils/constants";
 
@@ -14,7 +18,7 @@ const Pagination = ({ amountOfItems, route }: Props) => {
   const page = parseInt(searchParams.get("page") || "1");
 
   return (
-    <div className="pagination">
+    <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
       <PaginationMUI
         page={page}
         count={Math.ceil(amountOfItems / ITEMS_PER_PAGE)}
@@ -26,7 +30,7 @@ const Pagination = ({ amountOfItems, route }: Props) => {
           />
         )}
       />
-    </div>
+    </Box>
   );
 };
 
