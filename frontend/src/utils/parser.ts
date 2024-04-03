@@ -1,3 +1,4 @@
+import { IMAGE_NOT_FOUND } from "./constants";
 import type {
   SingleGameInfo,
   SearchInfo,
@@ -13,6 +14,7 @@ import type {
   SingleGameComment,
   SingleGameLinks,
   SingleGameVideo,
+  XMLJson_AttributesValue,
 } from "./types";
 
 import type {
@@ -163,7 +165,7 @@ const parseXMLJsonStats = (data: XMLJsonStats) => {
   return statistics;
 }; //praseXMLJsonStats
 
-const isNA = (data: { _attributes: { value: string } }) => {
+const isNA = (data: XMLJson_AttributesValue) => {
   if (data._attributes.value === "0") return "N/A";
   else return data._attributes.value;
 };
@@ -195,14 +197,10 @@ const parseXMLJsonCommonInfo = (data: XMLJsonThingResponse) => {
 const parseXMLJsonMedia = (data: XMLJsonThingResponse) => {
   let image, thumbnail;
   if (data.items.item.image !== undefined) image = data.items.item.image._text;
-  else
-    image =
-      "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg";
+  else image = IMAGE_NOT_FOUND;
   if (data.items.item.thumbnail !== undefined)
     thumbnail = data.items.item.thumbnail._text;
-  else
-    thumbnail =
-      "https://img.freepik.com/premium-vector/default-image-icon-vector-missing-picture-page-website-design-mobile-app-no-photo-available_87543-11093.jpg";
+  else thumbnail = IMAGE_NOT_FOUND;
 
   return { image, thumbnail };
 };

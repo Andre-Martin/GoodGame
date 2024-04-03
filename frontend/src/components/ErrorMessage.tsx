@@ -1,11 +1,13 @@
+import { Box } from "@mui/material";
 import error from "../img/error.gif";
 
-const ErrorMessage = () => {
+const ErrorMessage: React.FC = () => {
   return (
-    <img
+    <Box
+      component="img"
       src={error}
       alt="error gif"
-      style={{
+      sx={{
         display: "block",
         width: "250px",
         height: "250px",

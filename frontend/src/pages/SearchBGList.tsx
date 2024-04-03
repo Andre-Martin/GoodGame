@@ -2,20 +2,23 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../features/hooks/redux.hooks";
 import { useSearchParams } from "react-router-dom";
 
+import { Box } from "@mui/material";
+
+import SearchListItem from "../components/SearchBGList/SearchListItem";
+import Pagination from "../components/Pagination";
+import Spinner from "../components/Spinner";
+import Page404 from "./Page404";
+
 import {
   fetchSearchIDs,
   fetchSearchContent,
   clearResult,
 } from "../features/slices/searchSlice";
 
-import SearchListItem from "../components/SearchListItem";
-import Pagination from "../components/Pagination";
-import Spinner from "../components/Spinner";
-import Page404 from "./Page404";
-
 import { concatIDs, getSearchItemsByPage } from "../utils/common";
 import { ITEMS_PER_PAGE } from "../utils/constants";
 import ROUTES from "../utils/ROUTES";
+
 import type { ThingInfo } from "../utils/types";
 
 const SearchBGList: React.FC = () => {
@@ -49,7 +52,7 @@ const SearchBGList: React.FC = () => {
 
   const content = () => {
     if (page > Math.ceil(ids.length / ITEMS_PER_PAGE) && ids.length !== 0) {
-      return <div className="text-center">Page not found</div>;
+      return <Page404 message="Page not found " />;
     } else if (
       ids.length === 0 &&
       idsLoadingStatus == "succeeded" &&
@@ -62,24 +65,22 @@ const SearchBGList: React.FC = () => {
   };
 
   return (
-    <main className="shadow-lg p-4 mt-3 rounded">
+    <Box sx={{ boxShadow: 3, p: 4, mt: 3 }} component="main">
       {content()}
       {resultLoadingStatus === "succeeded" && (
         <>
-          <table className="table table-hover container">
-            <tbody>
-              {result?.map((item: ThingInfo, index: number) => (
-                <SearchListItem key={item.id} {...item} number={index + 1} />
-              ))}
-            </tbody>
-          </table>
+          <Box>
+            {result?.map((item: ThingInfo, index: number) => (
+              <SearchListItem key={item.id} {...item} number={index + 1} />
+            ))}
+          </Box>
           <Pagination
             amountOfItems={ids.length}
             route={`${ROUTES.search}?name=${name}`}
           />
         </>
       )}
-    </main>
+    </Box>
   );
 };
 
