@@ -19,7 +19,7 @@ const MainPanel = () => {
           <Typography variant="h5" color="info.main" className="hoverText">
             {title}
           </Typography>
-          <Typography component="sub" color="secondary.main">
+          <Typography ml={1} color="secondary.main">
             ({year})
           </Typography>
         </Box>

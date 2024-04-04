@@ -89,7 +89,6 @@ const Header = () => {
   const handleSubmit = (e: SubmitEvent) => {
     e.preventDefault();
     if (!name.trim()) return;
-
     navigate(`${ROUTES.search}?name=${name}&page=1`, { replace: true });
   };
 
