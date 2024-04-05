@@ -29,8 +29,8 @@ const SingleGame: React.FC = () => {
   );
   const dispatch = useAppDispatch();
 
-  // const { windowWidth } = useWindowSize();
-  // const imageSize = useElementWidth("bgInfo-img");
+  const { windowWidth } = useWindowSize();
+  const imageSize = useElementWidth("bgInfo-img");
 
   useEffect(() => {
     if (typeof id === "string") dispatch(fetchBoardgame(+id));
@@ -47,7 +47,7 @@ const SingleGame: React.FC = () => {
           <Box sx={{ boxShadow: 4, borderRadius: 4 }}>
             <Grid container sx={{ mt: 3, p: 5 }} spacing={3}>
               <Grid item xs={12} md={5}>
-                {/* <Box
+                <Box
                   id="bgInfo-img"
                   sx={{
                     width: "100%",
@@ -71,9 +71,9 @@ const SingleGame: React.FC = () => {
                       />
                     </Zoom>
                   )}
-                </Box> */}
+                </Box>
 
-                <Box
+                {/* <Box
                   component="img"
                   sx={{
                     maxWidth: "100%",
@@ -83,7 +83,7 @@ const SingleGame: React.FC = () => {
                   }}
                   src={boardgameInfo.image}
                   alt={boardgameInfo.title}
-                />
+                /> */}
               </Grid>
               <Grid item xs={12} md={7}>
                 <MainPanel />
