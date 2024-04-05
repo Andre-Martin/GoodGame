@@ -13,14 +13,24 @@ import {
 import Page404 from "./Page404";
 import Spinner from "../components/Spinner";
 
+import InnerImageZoom from "react-inner-image-zoom";
+import Zoom from "react-medium-image-zoom";
+import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
+import "react-medium-image-zoom/dist/styles.css";
+
 import { fetchBoardgame } from "../features/slices/boardgameSlice";
+import { useWindowSize, useElementWidth } from "../features/hooks/uiHooks";
 
 const SingleGame: React.FC = () => {
   const { id } = useParams();
+
   const { boardgameInfo, boardgameLoadingStatus } = useAppSelector(
     (state) => state.boardgame
   );
   const dispatch = useAppDispatch();
+
+  // const { windowWidth } = useWindowSize();
+  // const imageSize = useElementWidth("bgInfo-img");
 
   useEffect(() => {
     if (typeof id === "string") dispatch(fetchBoardgame(+id));
@@ -37,6 +47,32 @@ const SingleGame: React.FC = () => {
           <Box sx={{ boxShadow: 4, borderRadius: 4 }}>
             <Grid container sx={{ mt: 3, p: 5 }} spacing={3}>
               <Grid item xs={12} md={5}>
+                {/* <Box
+                  id="bgInfo-img"
+                  sx={{
+                    width: "100%",
+                    height: 500,
+                    mx: "auto",
+                    my: 3,
+                  }}
+                >
+                  {windowWidth > 900 ? (
+                    <InnerImageZoom
+                      src={boardgameInfo.image}
+                      width={imageSize}
+                      zoomScale={2}
+                    />
+                  ) : (
+                    <Zoom>
+                      <img
+                        src={boardgameInfo.image}
+                        width={imageSize}
+                        alt="product image"
+                      />
+                    </Zoom>
+                  )}
+                </Box> */}
+
                 <Box
                   component="img"
                   sx={{

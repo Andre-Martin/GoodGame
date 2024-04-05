@@ -5,6 +5,7 @@ import { Box, Button, Grid, Typography, TextField } from "@mui/material";
 
 import { HomeImage } from "../components/Home";
 import ROUTES from "../utils/ROUTES";
+import { getRandomID } from "../utils/common";
 
 interface KeyboardEvent {
   key: string;
@@ -66,21 +67,25 @@ const Home = () => {
                 </Button>
               </Grid>
             </Grid>
-
-            <Button
-              color="secondary"
-              variant="contained"
-              sx={{ width: "100%" }}
-            >
-              Advanced Search
-            </Button>
+            <Link to={ROUTES.boardGameItem + getRandomID()}>
+              <Button
+                color="secondary"
+                variant="contained"
+                sx={{ width: "100%" }}
+              >
+                Get Random BoardGame
+              </Button>
+            </Link>
             <Button
               color="secondary"
               variant="contained"
               sx={{ width: "100%", my: 1 }}
             >
-              <Link to={ROUTES.chat} style={{ textDecoration: "none" }}>
-                <Typography color="white">ASK GG</Typography>
+              <Link
+                to={ROUTES.boardGameList}
+                style={{ textDecoration: "none" }}
+              >
+                <Typography color="white">Hottest BoardGames</Typography>
               </Link>
             </Button>
           </Grid>

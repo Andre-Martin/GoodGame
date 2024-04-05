@@ -38,3 +38,7 @@ export const formatIDsFromSearch = (arr: any): number[] => {
   }
   return result;
 };
+
+export const getRandomID = (): number => {
+  return Math.floor(Math.random() * 1000);
+};

@@ -25,7 +25,6 @@ import ROUTES from "../../utils/ROUTES";
 const pages = [
   { route: ROUTES.home, value: "Home" },
   { route: ROUTES.boardGameList, value: "HOT BoardGames" },
-  { route: ROUTES.chat, value: "ASK GG" },
 ];
 
 const Search = styled("div")(({ theme }) => ({
@@ -177,7 +176,6 @@ const Header = () => {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <HeaderLink route={ROUTES.home} title="Home" />
             <HeaderLink route={ROUTES.boardGameList} title="Hot BoardGames" />
-            <HeaderLink route={ROUTES.chat} title="ASK GG" />
           </Box>
           <Search sx={{ display: { xs: "none", md: "block" } }}>
             <SearchIconWrapper>
