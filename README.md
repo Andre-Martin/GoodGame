@@ -25,6 +25,15 @@ Our project aims to develop an application tailored for tabletop gaming enthusia
 
 ---
 
+### Milestone #2 AI Declarations
+
+- [Andre's AI Disclosure Form]()
+- [Erbol's AI Disclosure Form]()
+- [Jacques' AI Disclosure Form]()
+- [Jina's AI Disclosure Form]()
+
+---
+
 ### Getting Started
 
 1. Install the Project using .zip or `git clone`
