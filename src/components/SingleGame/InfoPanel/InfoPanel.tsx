@@ -15,7 +15,7 @@ const InfoPanel = () => {
   const formattedComplexity =
     complexity === "N/A"
       ? "N/A"
-      : `Weight: ${Math.round(+complexity * 10) / 10}`;
+      : `Weight: ${Math.round(+complexity * 10) / 10}/5`;
   const formattedPlayers =
     minPlayers !== "N/A" ? `${minPlayers}-${maxPlayers} Players` : "N/A";
   const formattedTime =
@@ -25,7 +25,7 @@ const InfoPanel = () => {
     <Grid container borderTop={1}>
       <InfoPanelItem
         subInfo={formattedPlayers}
-        supInfo="Recommended"
+        supInfo="Best"
         styles={{ borderLeft: "none" }}
       />
       <InfoPanelItem subInfo={formattedTime} supInfo="Playing Time" />

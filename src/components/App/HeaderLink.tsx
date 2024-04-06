@@ -13,7 +13,7 @@ const HeaderLink = ({ title, route, styles }: Props) => {
       <Typography
         sx={{
           m: 2,
-          color: "white",
+          color: "black",
           textAlign: "center",
           ...styles,
         }}

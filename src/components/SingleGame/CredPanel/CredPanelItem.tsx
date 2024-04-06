@@ -22,7 +22,7 @@ const CredPanelItem = ({ title, arr }: Props) => {
         justifyContent: "start",
       }}
     >
-      <Typography color="info.main">{`${title}: `}</Typography>
+      <Typography color="primary.main">{`${title}: `}</Typography>
       <Typography sx={{ fontWeight: "light" }}>
         {arr.length === 0
           ? " None"
