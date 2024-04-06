@@ -1,11 +1,20 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import { Box, Button, Grid, Typography, TextField } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Typography,
+  TextField,
+  Divider,
+} from "@mui/material";
 
 import { HomeImage } from "../components/Home";
 import ROUTES from "../utils/ROUTES";
 import { getRandomID } from "../utils/common";
+
+import blueGuy from "../img/blueGuy.jpg";
 
 interface KeyboardEvent {
   key: string;
@@ -14,6 +23,10 @@ interface KeyboardEvent {
 const Home = () => {
   const [name, setName] = useState<string>("");
   const navigate = useNavigate();
+
+  const openWidget = () => {
+    window?.botpressWebChat?.sendEvent({ type: "show" });
+  };
 
   const handleSearchInput = (e: React.FormEvent<HTMLInputElement>) => {
     setName(e.currentTarget.value);
@@ -34,14 +47,19 @@ const Home = () => {
       <Box component="main" sx={{ my: 3 }}>
         <HomeImage />
 
-        <Grid container>
+        <Grid container justifyContent="center">
           <Grid
             item
             xs={12}
-            md={8}
-            lg={5}
-            sx={{ mx: "auto", p: 5, borderRadius: 4, boxShadow: 4 }}
+            md={5}
+            sx={{ p: 5, borderRadius: 4, boxShadow: 4, mr: 4 }}
           >
+            <Typography>
+              In this section you can search up boardgames by keywords or if you
+              don't know what you're looking for you can click the random board
+              game button to showcase a random board game or you can choose to
+              look at the hottest board games at the moment.
+            </Typography>
             <Grid container sx={{ my: 3 }}>
               <Grid item xs={10}>
                 <TextField
@@ -58,7 +76,7 @@ const Home = () => {
               </Grid>
               <Grid item xs={2}>
                 <Button
-                  color="secondary"
+                  color="primary"
                   variant="contained"
                   onClick={handleSubmit}
                   sx={{ height: "100%" }}
@@ -69,7 +87,7 @@ const Home = () => {
             </Grid>
             <Link to={ROUTES.boardGameItem + getRandomID()}>
               <Button
-                color="secondary"
+                color="primary"
                 variant="contained"
                 sx={{ width: "100%" }}
               >
@@ -77,7 +95,7 @@ const Home = () => {
               </Button>
             </Link>
             <Button
-              color="secondary"
+              color="primary"
               variant="contained"
               sx={{ width: "100%", my: 1 }}
             >
@@ -85,9 +103,29 @@ const Home = () => {
                 to={ROUTES.boardGameList}
                 style={{ textDecoration: "none" }}
               >
-                <Typography color="white">Hottest BoardGames</Typography>
+                <Typography color="black">Trending BoardGames</Typography>
               </Link>
             </Button>
+          </Grid>
+
+          <Grid
+            item
+            xs={12}
+            md={5}
+            sx={{ p: 5, borderRadius: 4, boxShadow: 4 }}
+          >
+            <Typography>
+              Hey there! My name is GG and I am here to help! To get started you
+              can click on me or click on the widget in the bottom right.
+            </Typography>
+            <Box
+              onClick={openWidget}
+              sx={{ cursor: "pointer" }}
+              component="img"
+              src={blueGuy}
+              height={300}
+              width="100%"
+            />
           </Grid>
         </Grid>
       </Box>

@@ -53,6 +53,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  border: "1px dashed black",
   color: "inherit",
   width: "100%",
   "& .MuiInputBase-input": {
@@ -119,7 +120,7 @@ const Header = () => {
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontWeight: 700,
-              color: "white",
+              color: "black",
               textDecoration: "none",
             }}
           >
@@ -167,7 +168,7 @@ const Header = () => {
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontWeight: 700,
-              color: "inherit",
+              color: "black",
               textDecoration: "none",
             }}
           >
@@ -175,7 +176,10 @@ const Header = () => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <HeaderLink route={ROUTES.home} title="Home" />
-            <HeaderLink route={ROUTES.boardGameList} title="Hot BoardGames" />
+            <HeaderLink
+              route={ROUTES.boardGameList}
+              title="Trending BoardGames"
+            />
           </Box>
           <Search sx={{ display: { xs: "none", md: "block" } }}>
             <SearchIconWrapper>

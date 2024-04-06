@@ -13,11 +13,6 @@ import {
 import Page404 from "./Page404";
 import Spinner from "../components/Spinner";
 
-import InnerImageZoom from "react-inner-image-zoom";
-import Zoom from "react-medium-image-zoom";
-import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
-import "react-medium-image-zoom/dist/styles.css";
-
 import { fetchBoardgame } from "../features/slices/boardgameSlice";
 import { useWindowSize, useElementWidth } from "../features/hooks/uiHooks";
 
@@ -47,7 +42,7 @@ const SingleGame: React.FC = () => {
           <Box sx={{ boxShadow: 4, borderRadius: 4 }}>
             <Grid container sx={{ mt: 3, p: 5 }} spacing={3}>
               <Grid item xs={12} md={5}>
-                <Box
+                {/* <Box
                   id="bgInfo-img"
                   sx={{
                     width: "100%",
@@ -71,9 +66,9 @@ const SingleGame: React.FC = () => {
                       />
                     </Zoom>
                   )}
-                </Box>
+                </Box> */}
 
-                {/* <Box
+                <Box
                   component="img"
                   sx={{
                     maxWidth: "100%",
@@ -83,7 +78,7 @@ const SingleGame: React.FC = () => {
                   }}
                   src={boardgameInfo.image}
                   alt={boardgameInfo.title}
-                /> */}
+                />
               </Grid>
               <Grid item xs={12} md={7}>
                 <MainPanel />
