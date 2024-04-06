@@ -1,1 +1,0 @@
-var r=256,a=[],u=256,t;for(;r--;)a[r]=(r+256).toString(16).substring(1);function s(o){var i=0,n=o||11;if(!t||r+n>u*2)for(t="",r=0;i<u;i++)t+=a[Math.random()*256|0];return t.substring(r,r+++n)}export{s as u};
