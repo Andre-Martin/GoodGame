@@ -10,9 +10,10 @@ Our project aims to develop an application tailored for tabletop gaming enthusia
 
 ### Documents
 
-- Here is the [Report](./docs/Documents/GoodGame_Project_Report.pdf) of the project
+- Here is the Milestone #1 [Report](./docs/Documents/GoodGame_Milestone1_Report.pdf) of the project
 - Here is the [Timeline](./docs/Documents/GoodGame_Project_Timeline.pdf) of the project
 - Here is the [WBS](./docs/Documents/GoodGame_Project_WBS.pdf) of the project
+- Here is the [Demo Video](https://youtu.be/i0P9WJMj1fM) of the project
 
 ---
 
@@ -29,7 +30,7 @@ Our project aims to develop an application tailored for tabletop gaming enthusia
 
 - [Andre's AI Disclosure Form]()
 - [Erbol's AI Disclosure Form]()
-- [Jacques' AI Disclosure Form]()
+- [Jacques' AI Disclosure Form](docs/AI%20Declarations/P2_AI_Declaration_Jacques_vanNiekerk_100402000.pdf)
 - [Jina's AI Disclosure Form]()
 
 ---
@@ -52,7 +53,8 @@ Our project aims to develop an application tailored for tabletop gaming enthusia
 - React-Spring
 - React-Router-Dom
 - MaterialUI
-- Jest
+- Vite
+- Vitest
 
 **API**:
 
