@@ -89,7 +89,7 @@ const parseBggXMLJsonLinks = (data: XMLJsonLink[]) => {
   return result;
 };
 
-const parseXMLJsonStats = (data: XMLJsonStats) => {
+export const parseXMLJsonStats = (data: XMLJsonStats) => {
   const statistics: SingleGameStats = {
     averageRating: "",
     complexity: "",
@@ -170,7 +170,7 @@ const isNA = (data: XMLJson_AttributesValue) => {
   else return data._attributes.value;
 };
 
-const parseXMLJsonCommonInfo = (data: XMLJsonThingResponse) => {
+export const parseXMLJsonCommonInfo = (data: XMLJsonThingResponse) => {
   const result = {
     year: "",
     minPlaytime: "",
@@ -217,7 +217,7 @@ const parseXMLJsonMedia = (data: XMLJsonThingResponse) => {
   return { image, thumbnail };
 };
 
-const parseXMLJsonComments = (data: XMLJsonThingResponse) => {
+export const parseXMLJsonComments = (data: XMLJsonThingResponse) => {
   let comments: SingleGameComment[] = [];
   if (data.items.item === undefined) return comments;
 
@@ -231,7 +231,7 @@ const parseXMLJsonComments = (data: XMLJsonThingResponse) => {
   return comments;
 };
 
-const parseXMLJsonVideo = (data: XMLJsonThingResponse) => {
+export const parseXMLJsonVideo = (data: XMLJsonThingResponse) => {
   const result: SingleGameVideo[] = [];
 
   if (data.items.item === undefined) return result;
@@ -313,6 +313,7 @@ const parseXMLJsonMarketplace = (data: XMLJsonThingResponse) => {
 export const parseFromXMLJsonThing = (
   data: XMLJsonThingResponse
 ): SingleGameInfo | null => {
+  console.log(data);
   if (data.items.item === undefined) return null;
   const { id, type } = data.items.item._attributes;
   const { title, alternativeNames } = parseXMLJsonTitles(data.items.item.name);

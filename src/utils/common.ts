@@ -47,9 +47,13 @@ export const getRandomID = (): number => {
   return Math.floor(Math.random() * 1000);
 };
 
-export const getTimeAgo = (date: Date): string => {
-  const currentDateTime = new Date();
-  const timeDifference = currentDateTime.getTime() - date.getTime();
+export const getTimeAgo = (
+  postedDate: string | Date,
+  currentDate?: Date
+): string => {
+  const currentDateTime = currentDate ? currentDate : new Date();
+  const givenDateTime = new Date(postedDate);
+  const timeDifference = currentDateTime.getTime() - givenDateTime.getTime();
 
   const seconds = Math.floor(timeDifference / 1000);
   const minutes = Math.floor(seconds / 60);
