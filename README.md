@@ -1,6 +1,6 @@
 # GoodGame Project CPSC 2350
 
-andre-martin.github.io/GoodGame/
+[Link to the Website](andre-martin.github.io/GoodGame/)
 
 ---
 
