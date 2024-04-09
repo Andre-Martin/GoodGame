@@ -1,5 +1,7 @@
 # GoodGame Project CPSC 2350
 
+andre-martin.github.io/GoodGame/
+
 ---
 
 ### What is this Project about
