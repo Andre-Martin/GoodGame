@@ -12,8 +12,8 @@ Our project aims to develop an application tailored for tabletop gaming enthusia
 
 ### Documents
 
-- Here is the Milestone #1 [Report](./docs/Documents/GoodGame_Milestone1_Report.pdf) of the project
-- Here is the Milestone #2 [Report](./docs/Documents/GoodGame_Milestone2_Report.pdf) of the project
+- Here is [Milestone #1 Report](./docs/Documents/GoodGame_Milestone1_Report.pdf) of the project
+- Here is [Milestone #2 Report](./docs/Documents/GoodGame_Milestone2_Report.pdf) of the project
 - Here is the [Timeline](./docs/Documents/GoodGame_Project_Timeline.pdf) of the project
 - Here is the [WBS](./docs/Documents/GoodGame_Project_WBS.pdf) of the project
 - Here is the [First Video Presentation](https://youtu.be/EXfxZS8mSnc) of the project
