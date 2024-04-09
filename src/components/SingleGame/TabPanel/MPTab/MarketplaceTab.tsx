@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useAppSelector } from "../../../../features/hooks/redux.hooks";
 
 import {
-  Box,
   Table,
   TableHead,
   TableRow,

@@ -1,7 +1,7 @@
 import { Typography, Grid, Box, Button } from "@mui/material";
 
 import ListItemFlex from "../../../ListItemFlex";
-import { getYoutubeImgByVideoID } from "../../../../utils/common";
+import { getTimeAgo, getYoutubeImgByVideoID } from "../../../../utils/common";
 
 import type { SingleGameVideo } from "../../../../utils/types";
 
@@ -38,7 +38,7 @@ const VideoTabItem = ({
         </ListItemFlex>
         <ListItemFlex>
           <Typography fontWeight="bold">Date: </Typography>
-          <Typography> {date}</Typography>
+          <Typography> {getTimeAgo(date)}</Typography>
         </ListItemFlex>
         <ListItemFlex>
           <Typography fontWeight="bold">Language: </Typography>

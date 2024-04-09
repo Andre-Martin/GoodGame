@@ -4,7 +4,7 @@ import userIcon from "../../../../img/usericon.png";
 import type { SingleGameComment } from "../../../../utils/types";
 import RatingIcon from "../../../RatingIcon";
 
-const CommentBox = ({ rating, value, username }: SingleGameComment) => {
+const CommentTabItem = ({ rating, value, username }: SingleGameComment) => {
   return (
     <Paper style={{ padding: "40px 20px" }}>
       <Grid container spacing={2}>
@@ -37,4 +37,4 @@ const CommentBox = ({ rating, value, username }: SingleGameComment) => {
   );
 };
 
-export default CommentBox;
+export default CommentTabItem;
