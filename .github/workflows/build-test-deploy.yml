@@ -1,4 +1,4 @@
-name: Deploy
+name: "Build, Test, Deploy"
 
 on:
   push:
@@ -28,7 +28,26 @@ jobs:
         with:
           name: production-files
           path: ./dist
+          
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      - name: Run `npm install`
+        run: |
+          npm install
+          npm run build
+
+      - name: Execute Unit tests
+        run: |
+          npm ci
+          npm run test
+          
   deploy:
     name: Deploy
     needs: build
