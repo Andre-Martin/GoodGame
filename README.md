@@ -4,15 +4,17 @@
 
 ### What is this Project about
 
-Our project aims to develop an application tailored for tabletop gaming enthusiasts, providing a user-friendly platform for searching specific tabletop games or inputting criteria to find suitable matches. The application will also be considered an educational platform where users are able to ask questions to a chatbot about game rules, recommendations, or general game knowledge. The primary focus of our endeavor, undertaken as part of our Software Practices class, lies in the detailed process and development journey rather than solely on the final product.
+Our project aims to develop an application tailored for tabletop gaming enthusiasts, providing a user-friendly platform for searching specific tabletop games or inputting criteria to find suitable matches. The application will also be considered an educational platform where users can ask questions to a chatbot about game rules, recommendations, or general game knowledge. The primary focus of our endeavour, undertaken as part of our Software Practices class, lies in the detailed process and development journey rather than solely on the final product.
 
 ---
 
 ### Documents
 
 - Here is the Milestone #1 [Report](./docs/Documents/GoodGame_Milestone1_Report.pdf) of the project
+- Here is the Milestone #2 [Report](./docs/Documents/GoodGame_Milestone2_Report.pdf) of the project
 - Here is the [Timeline](./docs/Documents/GoodGame_Project_Timeline.pdf) of the project
 - Here is the [WBS](./docs/Documents/GoodGame_Project_WBS.pdf) of the project
+- Here is the [First Video Presentation](https://youtu.be/EXfxZS8mSnc) of the project
 - Here is the [Demo Video](https://youtu.be/i0P9WJMj1fM) of the project
 
 ---
@@ -28,10 +30,10 @@ Our project aims to develop an application tailored for tabletop gaming enthusia
 
 ### Milestone #2 AI Declarations
 
-- [Andre's AI Disclosure Form]()
-- [Erbol's AI Disclosure Form]()
+- [Andre's AI Disclosure Form](docs/AI%20Declarations/P2_AI_Declaration_Andre_Martin_100339813.pdf)
+- [Erbol's AI Disclosure Form](docs/AI%20Declarations/P2_AI_Declaration_Erbol_Kulantaev_100403146.pdf)
 - [Jacques' AI Disclosure Form](docs/AI%20Declarations/P2_AI_Declaration_Jacques_vanNiekerk_100402000.pdf)
-- [Jina's AI Disclosure Form]()
+- [Jina's AI Disclosure Form](docs/AI%20Declarations/P2_AI_Declaration_Jina_Pak_100377523.pdf)
 
 ---
 
@@ -41,6 +43,7 @@ Our project aims to develop an application tailored for tabletop gaming enthusia
 2. Navigate to the root folder
 3. Download the project module using `npm install`
 4. Start the Project using `npm run dev`
+5. To test the Project run the command `npm run test` in the root directory
 
 ---
 
