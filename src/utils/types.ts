@@ -109,7 +109,7 @@ export type SingleGameInfo = {
   minPlayers: string;
 };
 
-type XMLJsonComment = {
+export type XMLJsonComment = {
   _attributes: {
     rating: string;
     username: string;
@@ -125,7 +125,7 @@ export type XMLJson_AttributesValue = {
 
 export type XMLJsonName = {
   _attributes: {
-    type: "primary" | "alternative";
+    type: "primary" | "alternate";
     value: string;
   };
 };
@@ -265,32 +265,4 @@ export type XMLJsonTop50Response = {
   items: {
     item: XMLJsonTop50Item[];
   };
-};
-
-export type card = {
-  id: number;
-  name: string;
-  year: number;
-  thumbnail: string;
-  description: string;
-};
-
-export type chatState = {
-  messages: chatItem[];
-  cards: card[];
-};
-
-export type chatItem = {
-  sender: boolean;
-  message: message[];
-};
-
-type message = {
-  content: string;
-  recommendations?: recommendation[];
-};
-
-type recommendation = {
-  content: string;
-  id: number;
 };

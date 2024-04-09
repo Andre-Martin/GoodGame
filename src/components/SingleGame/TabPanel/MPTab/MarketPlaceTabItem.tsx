@@ -1,6 +1,7 @@
 import { Typography, TableRow, TableCell } from "@mui/material";
 
 import type { SingleGameMPItem } from "../../../../utils/types";
+import { getTimeAgo } from "../../../../utils/common";
 
 interface Props extends SingleGameMPItem {
   title: string;
@@ -12,7 +13,6 @@ const MarketPlaceTabItem = ({
   date,
   price: { currency, value },
   condition,
-  notes,
 }: Props) => {
   return (
     <TableRow>
@@ -28,7 +28,7 @@ const MarketPlaceTabItem = ({
         <Typography>{`${currency} ${value}`}</Typography>
       </TableCell>
       <TableCell align="right">
-        <Typography>{date}</Typography>
+        <Typography>{getTimeAgo(date)}</Typography>
       </TableCell>
     </TableRow>
   );

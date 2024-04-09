@@ -8,17 +8,18 @@ interface Props {
 const RatingIcon = ({ rating, styles }: Props) => {
   let ratingColor: string;
   if (rating == "N/A") {
-    ratingColor = "primary.main";
+    ratingColor = "#555555";
   } else if (+rating > 7) {
-    ratingColor = "success.main";
+    ratingColor = "#28A745";
   } else if (+rating > 5) {
-    ratingColor = "warning.main";
+    ratingColor = "#FFC107";
   } else {
-    ratingColor = "error.main";
+    ratingColor = "#E8343A";
   }
   return (
     <Typography
       variant="caption"
+      data-testid="background"
       sx={{
         p: 2,
         mr: 3,
